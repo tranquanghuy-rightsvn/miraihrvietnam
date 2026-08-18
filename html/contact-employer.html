@@ -23,10 +23,10 @@
     <title>Liên hệ | ICONIC Group | Tư vấn tổ chức và tuyển dụng nhân sự cao cấp</title>
 
     <link rel="canonical" href="contact.html">
-    <link href="https://iconic-intl.com/contact" hreflang="x-default" rel="alternate">
-    <link href="https://iconic-intl.com/contact" hreflang="ja" rel="alternate">
-    <link href="https://iconic-intl.com/en/contact" hreflang="en" rel="alternate">
-    <link href="contact.html" hreflang="vi" rel="alternate">
+    <link href="https://iconic-intl.com/contact?employer-contact=1" hreflang="x-default" rel="alternate">
+    <link href="https://iconic-intl.com/contact?employer-contact=1" hreflang="ja" rel="alternate">
+    <link href="https://iconic-intl.com/en/contact?employer-contact=1" hreflang="en" rel="alternate">
+    <link href="contact-employer.html" hreflang="vi" rel="alternate">
 
     <meta name="description" content="ICONIC Group chuyên cung cấp dịch vụ Tư vấn tổ chức nhân sự và Tuyển dụng nhân sự nhằm hỗ trợ Doanh nghiệp xây dựng hệ thống quản lý nhân viên chuyên nghiệp và kết nối nhân tài toàn cầu. Ngoài ra, ICONIC có hơn 15 năm kinh nghiệm hỗ trợ ứng viên tìm kiếm công việc phù hợp.">
 
@@ -90,18 +90,18 @@
                     </button>
 
                     <ul class="dropdown-menu text-capitalize">
-                        <li><a class="dropdown-item " href="https://iconic-intl.com/contact">日本語</a></li>
-                        <li><a class="dropdown-item " href="https://iconic-intl.com/en/contact">English</a></li>
-                        <li><a class="dropdown-item active" href="contact.html">Tiếng Việt</a></li>
+                        <li><a class="dropdown-item " href="https://iconic-intl.com/contact?employer-contact=1">日本語</a></li>
+                        <li><a class="dropdown-item " href="https://iconic-intl.com/en/contact?employer-contact=1">English</a></li>
+                        <li><a class="dropdown-item active" href="contact-employer.html">Tiếng Việt</a></li>
                     </ul>
                 </li>
                 <li class="d-flex d-lg-none">
                     <ul class="list-unstyled d-flex justify-content-center w-100">
-                        <li class="mx-3"><a class="nav-link " href="https://iconic-intl.com/contact">JA</a></li>
+                        <li class="mx-3"><a class="nav-link " href="https://iconic-intl.com/contact?employer-contact=1">JA</a></li>
                         <li class="d-flex align-items-center"><div class="bg-black opacity-100" style="width: 2px; height: 17px;"></div></li>
-                        <li class="mx-3"><a class="nav-link " href="https://iconic-intl.com/en/contact">EN</a></li>
+                        <li class="mx-3"><a class="nav-link " href="https://iconic-intl.com/en/contact?employer-contact=1">EN</a></li>
                         <li class="d-flex align-items-center"><div class="bg-black opacity-100" style="width: 2px; height: 17px;"></div></li>
-                        <li class="mx-3"><a class="nav-link active" href="contact.html">VI</a></li>
+                        <li class="mx-3"><a class="nav-link active" href="contact-employer.html">VI</a></li>
                     </ul>
                 </li>
 
@@ -132,8 +132,8 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="tab-contact btn-group d-flex mt-4">
-                        <a class="btn active" href="contact.html">Ứng viên</a>
-                        <a class="btn" href="contact-employer.html">Nhà tuyển dụng</a>
+                        <a class="btn" href="contact.html">Ứng viên</a>
+                        <a class="btn active" href="contact-employer.html">Nhà tuyển dụng</a>
                     </div>
                 </div>
             </div>
@@ -142,9 +142,9 @@
                   action="#"
                   method="post" enctype="multipart/form-data"
                   data-parsley-validate>
-                <input type="hidden" name="_method" value="POST">                <input type="hidden" name="_token" value="" autocomplete="off">                <div id="my_name_4frkn9kWigTUgKIZ_wrap" style="display: none" aria-hidden="true">
-        <input id="my_name_4frkn9kWigTUgKIZ"
-               name="my_name_4frkn9kWigTUgKIZ"
+                <input type="hidden" name="_method" value="POST">                <input type="hidden" name="_token" value="" autocomplete="off">                <div id="my_name_xqDgYm6vJNcSqXHP_wrap" style="display: none" aria-hidden="true">
+        <input id="my_name_xqDgYm6vJNcSqXHP"
+               name="my_name_xqDgYm6vJNcSqXHP"
                type="text"
                value=""
                               autocomplete="nope"
@@ -157,6 +157,20 @@
     </div>
                 <div class="tab-input js-tab-contact active">
     <div class="page-contact__required-message u-text-red"> Phần * bắt buộc nhập.</div>
+            <div class="form-custom row">
+            <label for="company_name" class="col-lg-2 col-form-label">Tên công ty&nbsp;<span class="u-text-red">*</span></label>
+            <div class="col-lg-10">
+                <input name="company_name"
+                       class="form-control page-contact__input"
+                       id="company_name"
+                       value=""
+                       data-parsley-trigger="change"
+                       data-parsley-required="true"
+                       data-parsley-required-message="Vui lòng nhập tên công ty."
+                       placeholder="ICONIC CO.,Ltd.">
+            </div>
+        </div>
+        <input type="hidden" name="employer-contact" value="1">
         <div class="form-custom row">
         <label for="name" class="col-lg-2 col-form-label">Họ &amp; tên&nbsp;<span class="u-text-red">*</span></label>
         <div class="col-lg-10">
@@ -204,6 +218,29 @@
         </div>
     </div>
 
+            <div class="form-custom row">
+            <label for="requested_country" class="col-lg-2 col-form-label pt-lg-0">Quốc gia/khu vực yêu cầu&nbsp;<span class="u-text-red">*</span></label>
+            <div class="col-lg-10">
+                <select name="requested_country"
+                        id="requested_country"
+                        class="form-select js-contact-select2"
+                        data-parsley-errors-container="#country-errors"
+                        data-parsley-required="true"
+                        data-parsley-required-message="Vui lòng chọn quốc gia bạn yêu cầu."
+                        data-placeholder="--- Vui lòng chọn ---"
+                        data-theme="contact-select2"
+                        data-minimum-results-for-search="Infinity">
+                    <option></option>
+                                            <option value="Việt Nam - Miền Nam">Việt Nam - Miền Nam</option>
+                                            <option value="Việt Nam - Miền Bắc">Việt Nam - Miền Bắc</option>
+                                            <option value="Việt Nam - Miền Trung">Việt Nam - Miền Trung</option>
+                                            <option value="Malaysia">Malaysia</option>
+                                            <option value="Nhật Bản">Nhật Bản</option>
+                                    </select>
+
+                <div id="country-errors"></div>
+            </div>
+        </div>
     
     <div class="form-custom row">
         <label for="inquiry_type" class="col-lg-2 col-form-label">Nội dung liên hệ&nbsp;<span class="u-text-red">*</span></label>
@@ -218,12 +255,11 @@
                     data-theme="contact-select2"
                     data-minimum-results-for-search="Infinity">
                 <option></option>
-                                    <option value="Tìm việc làm tại Việt Nam - Miền Nam">Tìm việc làm tại Việt Nam - Miền Nam</option>
-                                    <option value="Tìm việc làm tại Việt Nam - Miền Bắc">Tìm việc làm tại Việt Nam - Miền Bắc</option>
-                                    <option value="Tìm việc làm tại Việt Nam - Miền Trung">Tìm việc làm tại Việt Nam - Miền Trung</option>
-                                    <option value="Tìm việc làm tại Malaysia">Tìm việc làm tại Malaysia</option>
-                                    <option value="Tìm việc làm tại Nhật Bản">Tìm việc làm tại Nhật Bản</option>
-                                    <option value="Muốn làm việc tại ICONIC">Muốn làm việc tại ICONIC</option>
+                                    <option value="Tuyển dụng nhân sự địa phương">Tuyển dụng nhân sự địa phương</option>
+                                    <option value="Tuyển dụng nhân sự Nhật Bản">Tuyển dụng nhân sự Nhật Bản</option>
+                                    <option value="Dịch vụ tư vấn quản lý nhân sự">Dịch vụ tư vấn quản lý nhân sự</option>
+                                    <option value="Báo cáo khảo sát">Báo cáo khảo sát</option>
+                                    <option value="Báo chí">Báo chí</option>
                                     <option value="Yêu cầu khác">Yêu cầu khác</option>
                             </select>
 
@@ -259,6 +295,10 @@
         <p class="message-detail">
             Vui lòng kiểm tra thông tin mà bạn đã nhập và nhấn nút &quot;GỬI&quot;.
         </p>
+                    <div class="group-info">
+                <div class="label">Tên công ty&nbsp;<span class="u-text-red">*</span></div>
+                <div class="value company_name_text"></div>
+            </div>
                 <div class="group-info">
             <div class="label">Họ &amp; tên&nbsp;<span class="u-text-red">*</span></div>
             <div class="value name_text"></div>
@@ -271,6 +311,10 @@
             <div class="label">Email&nbsp;<span class="u-text-red">*</span></div>
             <div class="value mail_text"></div>
         </div>
+                    <div class="group-info">
+                <div class="label">Quốc gia/khu vực yêu cầu&nbsp;<span class="u-text-red">*</span></div>
+                <div class="value requested_country_text"></div>
+            </div>
                 <div class="group-info">
             <div class="label">Nội dung liên hệ&nbsp;<span class="u-text-red">*</span></div>
             <div class="value inquiry_type_text"></div>
