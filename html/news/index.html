@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <!-- preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300..600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- preload -->
+    <link rel="preload" href="/html/css/app.css" as="style" />
+    <link rel="stylesheet" type="text/css" href="/html/css/vendors.css" />
+    <link rel="stylesheet" href="/html/css/app.css" />
+    <link rel="stylesheet" href="/html/css/site-custom.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimal-ui"
+    />
+    <meta name="theme-color" content="#00549b" />
+    <meta name="csrf-token" content="" />
+
+    <title>Tin tức | MIRAI VIET NAM HR CONSULTING</title>
+
+    <link rel="canonical" href="/html/news" />
+    <link
+      href="https://mirai-viet-nam.vercel.app/news"
+      hreflang="x-default"
+      rel="alternate"
+    />
+    <link href="/html/news" hreflang="vi" rel="alternate" />
+
+    <meta
+      name="description"
+      content="Tin tức tuyển dụng tại Nhật Bản, thị trường lao động Việt - Nhật, visa và kỹ năng đặc định (Tokutei Ginō), đầu tư kinh doanh và kết nối thương mại Việt - Nhật."
+    />
+    <meta property="og:title" content="Tin tức | MIRAI VIET NAM HR CONSULTING" />
+    <meta
+      property="og:description"
+      content="Tin tức tuyển dụng tại Nhật Bản, thị trường lao động Việt - Nhật, visa và kỹ năng đặc định (Tokutei Ginō), đầu tư kinh doanh và kết nối thương mại Việt - Nhật."
+    />
+    <meta property="og:url" content="https://mirai-viet-nam.vercel.app/news" />
+    <meta property="og:image" content="/html/assets/images/ogp/iconic-intl-ogp.jpg" />
+    <meta property="og:site_name" content="MIRAI VIET NAM HR CONSULTING" />
+    <meta property="og:type" content="article" />
+    <!--/facebook-->
+
+    <meta name="twitter:title" content="Tin tức | MIRAI VIET NAM HR CONSULTING" />
+    <meta
+      name="twitter:description"
+      content="Tin tức tuyển dụng tại Nhật Bản, thị trường lao động Việt - Nhật, visa và kỹ năng đặc định (Tokutei Ginō), đầu tư kinh doanh và kết nối thương mại Việt - Nhật."
+    />
+    <meta name="twitter:url" content="https://mirai-viet-nam.vercel.app/news" />
+    <meta
+      name="twitter:image"
+      content="/html/assets/images/ogp/iconic-intl-ogp.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- IE -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/html/assets/images/common/icon/favicon-v1.ico"
+    />
+    <!-- other browsers -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/html/assets/images/common/icon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/html/assets/images/common/icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/html/assets/images/common/icon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/html/assets/images/common/icon/apple-touch-icon.png"
+    />
+  </head>
+  <body class="page-news modify-page d-flex flex-column vh-100 font-en">
+    <nav class="nav-top navbar navbar-expand-lg fixed-top" id="js-nav-top">
+      <div class="container">
+        <a class="nav-logo" href="/html/">
+          <img
+            class="w-100"
+            src="/html/assets/images/logo.png"
+            alt="Mirai Viet Nam"
+          />
+        </a>
+        <div id="js-navbar-custom-toggler" class="navbar-custom-toggler">
+          <span class="bar bar1"></span>
+          <span class="bar bar2"></span>
+          <span class="bar bar3"></span>
+        </div>
+        <div
+          class="offcanvas-collapse navbar-collapse ms-lg-auto vh-100 u-vh-lg-auto pt-5 mt-n5 pt-lg-0 mt-lg-0"
+          id="js-offcanvas-collapse"
+        >
+          <ul
+            class="navbar-nav d-flex align-items-center ms-lg-auto mt-5 pt-5 mt-lg-0 pt-lg-0"
+          >
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/html/"
+                >Trang chủ</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/html/company">Về MIRAI</a>
+            </li>
+            <li class="nav-item dropdown">
+              <button
+                class="btn nav-link dropdown-toggle service-menu-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                DỊCH VỤ
+              </button>
+              <ul class="dropdown-menu service-menu">
+                <li>
+                  <a class="dropdown-item service-menu__item" href="/html/service">
+                    <span class="service-menu__num">01</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Giới thiệu nhân sự</span>
+                      <span class="service-menu__desc">Tuyển dụng nhân sự Việt - Nhật</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="/html/consulting">
+                    <span class="service-menu__num">02</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Tư vấn kinh doanh</span>
+                      <span class="service-menu__desc">Thâm nhập &amp; mở rộng tại Việt Nam</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="/html/connect">
+                    <span class="service-menu__num">03</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Kết nối Việt - Nhật</span>
+                      <span class="service-menu__desc">Kết nối doanh nghiệp hai chiều</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/html/career">Việc làm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/html/news">Tin tức</a>
+            </li>
+
+            <li class="nav-item dropdown d-none d-lg-flex">
+              <button
+                class="btn nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  class="icon-white"
+                  alt="icon white"
+                  src="/html/assets/images/common/navigation/language-white.png"
+                />
+                <img
+                  class="icon-black"
+                  alt="icon black"
+                  src="/html/assets/images/common/navigation/language-black.png"
+                />
+                <span class="">VI</span>
+              </button>
+
+              <ul class="dropdown-menu text-capitalize">
+                <li>
+                  <a class="dropdown-item active" href="/html/news"
+                    >Tiếng Việt</a
+                  >
+                </li>
+                <li>
+                  <span class="dropdown-item disabled text-muted"
+                    >日本語（Sắp ra mắt）</span
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="d-flex d-lg-none">
+              <ul class="list-unstyled d-flex justify-content-center w-100">
+                <li class="mx-3">
+                  <a class="nav-link active" href="/html/news">VI</a>
+                </li>
+                <li class="d-flex align-items-center">
+                  <div
+                    class="bg-black opacity-100"
+                    style="width: 2px; height: 17px"
+                  ></div>
+                </li>
+                <li class="mx-3">
+                  <span class="nav-link text-muted">JP</span>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-top-contact">
+              <a class="btn-default btn-contact-nav" href="/html/contact"
+                >Liên hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="u-margin-page">
+        <div class="container">
+          <nav class="u-padding-breadcrumb" aria-label="breadcrumb mb-0">
+            <ol class="breadcrumb container">
+              <li class="breadcrumb-item">
+                <a class="breadcrumb__link" href="/html/">Trang chủ</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">Tin tức</li>
+            </ol>
+          </nav>
+          <div class="text-center">
+            <h1 class="heading-2 u-margin-heading-2 d-inline-block mx-auto">
+              Tin tức
+              <span class="underline"></span>
+            </h1>
+          </div>
+          <section class="new-wrapper">
+            <div class="row ms-0 me-0">
+              <div class="col-lg-9">
+                <div class="news-grid">
+                <div class="news-page is-active" data-page="1">
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-1.jpg"
+                        alt="Kỳ 7 | Kỹ năng đặc định (Tokutei Ginō): Cánh cửa mới cho nhân sự Việt Nam sang Nhật Bản"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-06-26">26/06/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 7 | Kỹ năng đặc định (Tokutei Ginō): Cánh cửa
+                          mới cho nhân sự Việt Nam sang Nhật Bản</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Tìm hiểu về chương trình Kỹ năng đặc định (Tokutei
+                        Ginō) — lộ trình visa mới giúp lao động Việt Nam làm
+                        việc dài hạn tại Nhật Bản với mức đãi ngộ tốt hơn.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-2.jpg"
+                        alt="Kỳ 6 | Doanh nghiệp Nhật Bản cần chuẩn bị gì khi thâm nhập thị trường Việt Nam?"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-06-18">18/06/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 6 | Doanh nghiệp Nhật Bản cần chuẩn bị gì khi
+                          thâm nhập thị trường Việt Nam?</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Những lưu ý pháp lý, văn hóa và nhân sự mà doanh
+                        nghiệp Nhật Bản cần chuẩn bị trước khi mở rộng đầu tư
+                        và kinh doanh tại Việt Nam.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-3.jpg"
+                        alt="Kỳ 5 | Thị trường lao động Việt - Nhật 2026: Những xu hướng đáng chú ý"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-06-12">12/06/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 5 | Thị trường lao động Việt - Nhật 2026: Những
+                          xu hướng đáng chú ý</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Phân tích các xu hướng nổi bật của thị trường lao
+                        động Việt - Nhật trong năm 2026, từ nhu cầu tuyển
+                        dụng đến thay đổi chính sách visa.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-4.jpg"
+                        alt="Kỳ 4 | 5 nhóm ngành nghề nhân sự Việt Nam được doanh nghiệp Nhật Bản săn đón"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-06-02">02/06/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 4 | 5 nhóm ngành nghề nhân sự Việt Nam được
+                          doanh nghiệp Nhật Bản săn đón</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Điểm qua 5 nhóm ngành nghề nhân sự Việt Nam đang được
+                        các doanh nghiệp Nhật Bản săn đón nhiều nhất hiện
+                        nay.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-5.jpg"
+                        alt="Kỳ 3 | Kết nối thương mại Việt - Nhật: Cơ hội cho doanh nghiệp vừa và nhỏ"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-05-26">26/05/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 3 | Kết nối thương mại Việt - Nhật: Cơ hội cho
+                          doanh nghiệp vừa và nhỏ</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Cơ hội kết nối thương mại Việt - Nhật dành cho doanh
+                        nghiệp vừa và nhỏ, cùng những kênh hỗ trợ hợp tác
+                        hiệu quả.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-6.jpg"
+                        alt="Kỳ 2 | Quy trình xin visa kỹ sư (Gijinkoku) cho lao động Việt Nam tại Nhật Bản"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-05-19">19/05/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 2 | Quy trình xin visa kỹ sư (Gijinkoku) cho
+                          lao động Việt Nam tại Nhật Bản</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Hướng dẫn chi tiết quy trình xin visa kỹ sư
+                        (Gijinkoku) dành cho lao động Việt Nam có nguyện vọng
+                        làm việc tại Nhật Bản.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="news-page" data-page="2" hidden>
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-7.jpg"
+                        alt="Kỳ 1 | Vì sao ngày càng nhiều doanh nghiệp Nhật Bản chọn Việt Nam làm điểm đến đầu tư"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-05-12">12/05/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Kỳ 1 | Vì sao ngày càng nhiều doanh nghiệp Nhật
+                          Bản chọn Việt Nam làm điểm đến đầu tư</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Lý giải nguyên nhân ngày càng nhiều doanh nghiệp Nhật
+                        Bản lựa chọn Việt Nam làm điểm đến đầu tư chiến lược.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-8.jpg"
+                        alt="MIRAI VIET NAM đồng hành cùng doanh nghiệp tại các hoạt động kết nối thương mại Việt - Nhật"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-04-20">20/04/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >MIRAI VIET NAM đồng hành cùng doanh nghiệp tại các
+                          hoạt động kết nối thương mại Việt - Nhật</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        MIRAI VIET NAM tham gia đồng hành cùng các hoạt động
+                        kết nối thương mại, giao lưu doanh nghiệp giữa Việt
+                        Nam và Nhật Bản.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+
+                  <article class="news-card">
+                    <a href="/html/news/263" class="news-card__thumb">
+                      <img
+                        src="/html/assets/images/news/thumb-9.jpg"
+                        alt="Cập nhật chính sách tiếp nhận lao động kỹ năng đặc định tại Nhật Bản năm 2026"
+                        loading="lazy"
+                      />
+                    </a>
+                    <div class="news-card__body">
+                      <div class="news-card__date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="2026-03-15">15/03/2026</time>
+                      </div>
+                      <h3 class="news-card__title">
+                        <a href="/html/news/263"
+                          >Cập nhật chính sách tiếp nhận lao động kỹ năng đặc
+                          định tại Nhật Bản năm 2026</a
+                        >
+                      </h3>
+                      <p class="news-card__desc">
+                        Cập nhật những thay đổi mới nhất trong chính sách
+                        tiếp nhận lao động kỹ năng đặc định tại Nhật Bản năm
+                        2026.
+                      </p>
+                      <a href="/html/news/263" class="news-card__more"
+                        >Đọc tiếp <i class="fa fa-long-arrow-right"></i
+                      ></a>
+                    </div>
+                  </article>
+                </div>
+                </div>
+
+                <nav class="news-pagination" aria-label="Phân trang tin tức">
+                  <button
+                    type="button"
+                    class="news-pagination__btn news-pagination__btn--prev"
+                    data-action="prev"
+                  >
+                    <i class="fa fa-angle-left"></i> Trước
+                  </button>
+                  <button
+                    type="button"
+                    class="news-pagination__btn is-active"
+                    data-page="1"
+                  >
+                    1
+                  </button>
+                  <button type="button" class="news-pagination__btn" data-page="2">
+                    2
+                  </button>
+                  <button
+                    type="button"
+                    class="news-pagination__btn news-pagination__btn--next"
+                    data-action="next"
+                  >
+                    Sau <i class="fa fa-angle-right"></i>
+                  </button>
+                </nav>
+              </div>
+              <div
+                class="col-lg-3 text-uppercase right-sidebar text-center text-lg-start position-relative"
+              >
+                <h3 class="heading-smaller mb-0 d-inline-block mx-auto">
+                  Danh mục
+                  <span class="underline-smaller"></span>
+                </h3>
+                <div>
+                  <ul class="text-capitalize">
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span><span>Tất cả</span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span
+                        ><span>Tin tuyển dụng tại Nhật Bản</span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span
+                        ><span>Thị trường lao động Nhật - Việt</span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span
+                        ><span>Visa / Tokutei Ginō</span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span
+                        ><span>Đầu tư &amp; kinh doanh tại Việt Nam</span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen"> > </span
+                        ><span>Kết nối thương mại Việt - Nhật</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <br />
+                <br />
+
+                <h3 class="heading-smaller mb-0 mx-auto d-inline-block">
+                  Lưu trữ
+                  <span class="underline-smaller"></span>
+                </h3>
+                <div>
+                  <ul class="list-archives ps-lg-0">
+                    <li>
+                      <a href="/html/news"
+                        ><span class="hyphen fw-bold"> - </span>2026</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="section-contact pb-0">
+          <div class="container text-center">
+            <h2
+              class="heading-2 u-override-font-size u-override-margin u-margin-heading-2 d-inline-block mx-auto"
+            >
+              Liên hệ
+              <span class="underline"></span>
+            </h2>
+            <p class="section-contact__description">
+              Vui lòng liên hệ với MIRAI VIET NAM
+            </p>
+            <div class="d-flex justify-content-center">
+              <a class="btn-default btn-1" href="/html/contact"> Liên hệ </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto">
+      <div class="container footer__container">
+        <div class="row footer__navbar-nav text-white py-5">
+          <div class="col-lg-2">
+            <div class="footer__box">
+              <img
+                src=""
+                class="logo-2 w-100 lazyload"
+                data-src="/html/assets/images/logo.png"
+                alt="Mirai Viet Nam"
+              />
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <ul class="list-unstyled mb-0">
+              <li><a class="text-white" href="/html/">Trang chủ</a></li>
+              <li><a class="text-white" href="/html/company">Về MIRAI</a></li>
+              <li>
+                <a class="text-white" href="/html/service"
+                  >Giới thiệu nhân sự</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="/html/consulting"
+                  >Tư vấn kinh doanh</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="/html/connect">Kết nối Việt - Nhật</a>
+              </li>
+              <li><a class="text-white" href="/html/career">Việc làm</a></li>
+              <li><a class="text-white" href="/html/news">Tin tức</a></li>
+              <li><a class="text-white" href="/html/contact">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 footer__border">
+            <div class="footer__title">Thông tin liên hệ</div>
+            <p class="footer__link mb-1">
+              MIRAI VIET NAM HR CONSULTING
+              <br />
+              Tầng 4, Tòa nhà IMC, Số 62 Trần Quang Khải,
+              <br />
+              P. Tân Định, TP.HCM, Việt Nam
+            </p>
+            <p class="footer__link mb-1">
+              Email: hr.miraivietnam@gmail.com
+              <br />
+              Điện thoại: (+84) 933 643 654
+            </p>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 pe-lg-0">
+            <div class="footer__title">MIRAI JAPAN (Công ty mẹ)</div>
+            <p class="footer__link mb-1">
+              257 Kamikuroda, Thành phố Takaoka, Tỉnh Toyama, Nhật Bản
+              <br />
+              Chi nhánh Chiba: Tòa nhà Tokai Ozaki, 837-40 Ozaki, Thành phố
+              Noda, Tỉnh Chiba, Nhật Bản
+            </p>
+            <a
+              class="footer__link"
+              target="_blank"
+              rel="noopener"
+              href="https://miraijinzai.com/"
+              >Xem trang MIRAI JAPAN &rarr;</a
+            >
+          </div>
+        </div>
+
+        <div
+          class="row footer__copy-social g-0 flex-column-reverse flex-lg-row"
+        >
+          <p
+            class="col-12 footer__copy-right text-white align-self-center text-center text-lg-start mb-0"
+          >
+            Copyright &#169; 2026 MIRAI VIET NAM HR CONSULTING - All Rights
+            Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/html/js/manifest.js"></script>
+    <script src="/html/js/vendors.js"></script>
+    <script src="/html/js/app.js"></script>
+
+    <script>
+      (function () {
+        var grid = document.querySelector(".news-grid");
+        var pages = document.querySelectorAll(".news-page");
+        var pageBtns = document.querySelectorAll(
+          ".news-pagination__btn[data-page]"
+        );
+        var prevBtn = document.querySelector(
+          '.news-pagination__btn[data-action="prev"]'
+        );
+        var nextBtn = document.querySelector(
+          '.news-pagination__btn[data-action="next"]'
+        );
+        if (!pages.length) return;
+
+        var total = pages.length;
+        var current = 1;
+
+        function render(page, scroll) {
+          current = page;
+          pages.forEach(function (p) {
+            p.hidden = Number(p.dataset.page) !== page;
+            p.classList.toggle("is-active", Number(p.dataset.page) === page);
+          });
+          pageBtns.forEach(function (b) {
+            b.classList.toggle("is-active", Number(b.dataset.page) === page);
+          });
+          if (prevBtn) prevBtn.disabled = page === 1;
+          if (nextBtn) nextBtn.disabled = page === total;
+          if (scroll && grid) {
+            grid.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+
+        pageBtns.forEach(function (b) {
+          b.addEventListener("click", function () {
+            render(Number(b.dataset.page), true);
+          });
+        });
+        if (prevBtn) {
+          prevBtn.addEventListener("click", function () {
+            if (current > 1) render(current - 1, true);
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function () {
+            if (current < total) render(current + 1, true);
+          });
+        }
+
+        render(1, false);
+      })();
+    </script>
+  </body>
+</html>
