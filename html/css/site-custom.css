@@ -48,6 +48,20 @@ html {
   border-radius: 14px;
   box-shadow: 0 20px 45px -10px rgba(4, 20, 45, 0.28);
 }
+/* Below lg, .navbar-nav .dropdown-menu is position:static (Bootstrap
+   opens it inline instead of floating), so the .service-menu card
+   sits in normal flow and stretches its parent <li> to the card's own
+   ~350px width. The toggle button is a block-level flex row (see
+   `.nav-top .dropdown .btn` display:flex above) with no width of its
+   own, so it then stretches to match that same ~350px <li> and its
+   text sits at the flex-start (left) edge — out of line with the
+   plain .nav-link items beside it, which stay their own text width
+   and get centered by the navbar's align-items:center. Center the
+   button's own content so "DỊCH VỤ" lines up with its siblings no
+   matter how wide the <li> ends up. */
+.nav-top .dropdown .btn {
+  justify-content: center;
+}
 .service-menu__item {
   display: flex !important;
   align-items: center;

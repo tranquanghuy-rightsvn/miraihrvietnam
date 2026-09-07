@@ -16348,8 +16348,8 @@ input:-webkit-autofill:hover {
   margin-bottom: 3.125rem;
 }
 .page-home .header {
-  background: url(../assets/images/common/header/bg-header-mobile-v1.jpg) 100% /
-    cover no-repeat scroll;
+  background: url(../assets/images/common/header/bg-header.jpg) 73% / cover
+    no-repeat scroll;
   height: 90vh;
   min-height: 500px;
   overflow: hidden;
@@ -16357,8 +16357,6 @@ input:-webkit-autofill:hover {
 @media (min-width: 992px) {
   .page-home .header {
     background-attachment: fixed;
-    background-image: url(../assets/images/common/header/bg-header.jpg);
-    background-position-x: 73%;
     height: 100vh;
   }
 }
