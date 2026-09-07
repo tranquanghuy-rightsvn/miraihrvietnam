@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <!-- preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300..600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- preload -->
+    <link rel="preload" href="css/app.css" as="style" />
+    <link rel="stylesheet" type="text/css" href="css/vendors.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/site-custom.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimal-ui"
+    />
+    <meta name="theme-color" content="#00549b" />
+    <meta name="csrf-token" content="" />
+
+    <title>Liên hệ - Tư vấn kinh doanh | MIRAI VIET NAM HR CONSULTING</title>
+
+    <link rel="canonical" href="contact-business.html" />
+    <link
+      href="https://mirai-viet-nam.vercel.app/contact-business"
+      hreflang="x-default"
+      rel="alternate"
+    />
+    <link href="contact-business.html" hreflang="vi" rel="alternate" />
+
+    <meta
+      name="description"
+      content="Doanh nghiệp cần tư vấn thâm nhập thị trường Việt Nam hoặc kết nối đối tác Việt - Nhật? Hãy gửi yêu cầu cho MIRAI VIET NAM."
+    />
+    <meta
+      property="og:title"
+      content="Liên hệ - Tư vấn kinh doanh | MIRAI VIET NAM HR CONSULTING"
+    />
+    <meta
+      property="og:description"
+      content="Doanh nghiệp cần tư vấn thâm nhập thị trường Việt Nam hoặc kết nối đối tác Việt - Nhật? Hãy gửi yêu cầu cho MIRAI VIET NAM."
+    />
+    <meta
+      property="og:url"
+      content="https://mirai-viet-nam.vercel.app/contact-business"
+    />
+    <meta property="og:image" content="assets/images/ogp/iconic-intl-ogp.jpg" />
+    <meta property="og:site_name" content="MIRAI VIET NAM HR CONSULTING" />
+    <meta property="og:type" content="article" />
+    <!--/facebook-->
+
+    <meta
+      name="twitter:title"
+      content="Liên hệ - Tư vấn kinh doanh | MIRAI VIET NAM HR CONSULTING"
+    />
+    <meta
+      name="twitter:description"
+      content="Doanh nghiệp cần tư vấn thâm nhập thị trường Việt Nam hoặc kết nối đối tác Việt - Nhật? Hãy gửi yêu cầu cho MIRAI VIET NAM."
+    />
+    <meta
+      name="twitter:url"
+      content="https://mirai-viet-nam.vercel.app/contact-business"
+    />
+    <meta
+      name="twitter:image"
+      content="assets/images/ogp/iconic-intl-ogp.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- IE -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/images/common/icon/favicon-v1.ico"
+    />
+    <!-- other browsers -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/images/common/icon/favicon.ico"
+    />
+  </head>
+  <body class="page-contact modify-page d-flex flex-column vh-100 font-en">
+    <nav class="nav-top navbar navbar-expand-lg fixed-top" id="js-nav-top">
+      <div class="container">
+        <a class="nav-logo" href="index.html">
+          <img
+            class="w-100"
+            src="assets/images/logo.png"
+            alt="Mirai Viet Nam"
+          />
+        </a>
+        <div id="js-navbar-custom-toggler" class="navbar-custom-toggler">
+          <span class="bar bar1"></span>
+          <span class="bar bar2"></span>
+          <span class="bar bar3"></span>
+        </div>
+        <div
+          class="offcanvas-collapse navbar-collapse ms-lg-auto vh-100 u-vh-lg-auto pt-5 mt-n5 pt-lg-0 mt-lg-0"
+          id="js-offcanvas-collapse"
+        >
+          <ul
+            class="navbar-nav d-flex align-items-center ms-lg-auto mt-5 pt-5 mt-lg-0 pt-lg-0"
+          >
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html"
+                >Trang chủ</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="company.html">Về MIRAI</a>
+            </li>
+            <li class="nav-item dropdown">
+              <button
+                class="btn nav-link dropdown-toggle service-menu-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                DỊCH VỤ
+              </button>
+              <ul class="dropdown-menu service-menu">
+                <li>
+                  <a class="dropdown-item service-menu__item" href="service.html">
+                    <span class="service-menu__num">01</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Giới thiệu nhân sự</span>
+                      <span class="service-menu__desc">Tuyển dụng nhân sự Việt - Nhật</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="consulting.html">
+                    <span class="service-menu__num">02</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Tư vấn kinh doanh</span>
+                      <span class="service-menu__desc">Thâm nhập &amp; mở rộng tại Việt Nam</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="connect.html">
+                    <span class="service-menu__num">03</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">Kết nối Việt - Nhật</span>
+                      <span class="service-menu__desc">Kết nối doanh nghiệp hai chiều</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="career.html">Việc làm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">Tin tức</a>
+            </li>
+
+            <li class="nav-item dropdown d-none d-lg-flex">
+              <button
+                class="btn nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  class="icon-white"
+                  alt="icon white"
+                  src="assets/images/common/navigation/language-white.png"
+                />
+                <img
+                  class="icon-black"
+                  alt="icon black"
+                  src="assets/images/common/navigation/language-black.png"
+                />
+                <span class="">VI</span>
+              </button>
+
+              <ul class="dropdown-menu text-capitalize">
+                <li>
+                  <a class="dropdown-item active" href="contact-business.html"
+                    >Tiếng Việt</a
+                  >
+                </li>
+                <li>
+                  <span class="dropdown-item disabled text-muted"
+                    >日本語（Sắp ra mắt）</span
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="d-flex d-lg-none">
+              <ul class="list-unstyled d-flex justify-content-center w-100">
+                <li class="mx-3">
+                  <a class="nav-link active" href="contact-business.html"
+                    >VI</a
+                  >
+                </li>
+                <li class="d-flex align-items-center">
+                  <div
+                    class="bg-black opacity-100"
+                    style="width: 2px; height: 17px"
+                  ></div>
+                </li>
+                <li class="mx-3">
+                  <span class="nav-link text-muted">JP</span>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-top-contact">
+              <a class="btn-default btn-contact-nav" href="contact.html"
+                >Liên hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="u-margin-page">
+        <div class="container">
+          <nav class="u-padding-breadcrumb" aria-label="breadcrumb mb-0">
+            <ol class="breadcrumb container">
+              <li class="breadcrumb-item">
+                <a class="breadcrumb__link" href="index.html">Trang chủ</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">Liên hệ</li>
+            </ol>
+          </nav>
+
+          <div class="text-center">
+            <h1 class="heading-2 u-margin-heading-2 d-inline-block mx-auto">
+              Liên hệ
+              <span class="underline"></span>
+            </h1>
+            <p class="fs-5 mb-0">
+              Hãy trao đổi với MIRAI về nhu cầu của doanh nghiệp bạn
+            </p>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="tab-contact btn-group d-flex mt-4">
+                <a class="btn" href="contact.html">Ứng viên</a>
+                <a class="btn" href="contact-employer.html">Nhà tuyển dụng</a>
+                <a class="btn active" href="contact-business.html"
+                  >Tư vấn kinh doanh</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <form
+            class="page-contact__form contact-form js-contact-form"
+            action="#"
+            method="post"
+            enctype="multipart/form-data"
+            data-parsley-validate
+          >
+            <input type="hidden" name="_method" value="POST" />
+            <input type="hidden" name="_token" value="" autocomplete="off" />
+            <div class="tab-input js-tab-contact active">
+              <div class="page-contact__required-message u-text-red">
+                Phần * bắt buộc nhập.
+              </div>
+              <div class="form-custom row">
+                <label for="company_name" class="col-lg-2 col-form-label"
+                  >Tên công ty&nbsp;<span class="u-text-red">*</span></label
+                >
+                <div class="col-lg-10">
+                  <input
+                    name="company_name"
+                    class="form-control page-contact__input"
+                    id="company_name"
+                    value=""
+                    data-parsley-trigger="change"
+                    data-parsley-required="true"
+                    data-parsley-required-message="Vui lòng nhập tên công ty."
+                    placeholder="MIRAI VIET NAM HR CONSULTING"
+                  />
+                </div>
+              </div>
+              <div class="form-custom row">
+                <label for="name" class="col-lg-2 col-form-label"
+                  >Họ &amp; tên&nbsp;<span class="u-text-red">*</span></label
+                >
+                <div class="col-lg-10">
+                  <input
+                    name="name"
+                    class="form-control page-contact__input"
+                    id="name"
+                    value=""
+                    data-parsley-trigger="change"
+                    data-parsley-required="true"
+                    data-parsley-required-message="Vui lòng nhập tên của bạn."
+                    data-parsley-maxlength="50"
+                    data-parsley-maxlength-message="Vui lòng nhập tên của bạn trong giới hạn 50 ký tự."
+                    placeholder="Họ &amp; tên"
+                  />
+                </div>
+              </div>
+              <div class="form-custom row">
+                <label for="tel" class="col-lg-2 col-form-label"
+                  >Điện thoại</label
+                >
+                <div class="col-lg-10">
+                  <input
+                    name="tel"
+                    class="form-control page-contact__input"
+                    id="tel"
+                    value=""
+                    data-parsley-trigger="change"
+                    data-parsley-pattern="^\+[0-9-]{9,19}$"
+                    data-parsley-pattern-message="Số điện thoại không hợp lệ."
+                    placeholder="Điện thoại: +84-900-000-000"
+                  />
+                  <p class="recommend-tel u-text-red">
+                    *Vui lòng nhập số điện thoại bao gồm mã quốc gia bắt đầu
+                    bằng dấu +
+                  </p>
+                </div>
+              </div>
+              <div class="form-custom row">
+                <label for="mail" class="col-lg-2 col-form-label"
+                  >Email&nbsp;<span class="u-text-red">*</span></label
+                >
+                <div class="col-lg-10">
+                  <input
+                    name="mail"
+                    class="form-control page-contact__input"
+                    id="mail"
+                    value=""
+                    data-parsley-trigger="change"
+                    data-parsley-type="email"
+                    data-parsley-type-message="Định dạng email không hợp lệ."
+                    data-parsley-required="true"
+                    data-parsley-required-message="Vui lòng nhập địa chỉ email của bạn."
+                    data-parsley-maxlength="50"
+                    data-parsley-maxlength-message="Vui lòng nhập email của bạn trong giới hạn 50 ký tự."
+                    placeholder="Mail: sample@mail.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-custom row">
+                <label for="inquiry_type" class="col-lg-2 col-form-label"
+                  >Loại nhu cầu&nbsp;<span class="u-text-red">*</span></label
+                >
+                <div class="col-lg-10">
+                  <select
+                    name="inquiry_type"
+                    id="inquiry_type"
+                    class="form-select js-contact-select2"
+                    data-parsley-errors-container="#inquiry-type-errors"
+                    data-parsley-required="true"
+                    data-parsley-required-message="Vui lòng chọn nội dung bạn muốn liên hệ."
+                    data-placeholder="--- Vui lòng chọn ---"
+                    data-theme="contact-select2"
+                    data-minimum-results-for-search="Infinity"
+                  >
+                    <option></option>
+                    <option value="Tư vấn thâm nhập thị trường Việt Nam">
+                      Tư vấn thâm nhập thị trường Việt Nam
+                    </option>
+                    <option
+                      value="Thành lập pháp nhân & thủ tục đầu tư"
+                    >
+                      Thành lập pháp nhân &amp; thủ tục đầu tư
+                    </option>
+                    <option value="Tìm kiếm đối tác tại Việt Nam">
+                      Tìm kiếm đối tác tại Việt Nam
+                    </option>
+                    <option
+                      value="Kết nối doanh nghiệp Nhật Bản → Việt Nam"
+                    >
+                      Kết nối doanh nghiệp Nhật Bản → Việt Nam
+                    </option>
+                    <option
+                      value="Kết nối doanh nghiệp Việt Nam → Nhật Bản"
+                    >
+                      Kết nối doanh nghiệp Việt Nam → Nhật Bản
+                    </option>
+                    <option value="Yêu cầu khác">Yêu cầu khác</option>
+                  </select>
+
+                  <div id="inquiry-type-errors"></div>
+                </div>
+              </div>
+
+              <div class="form-custom row">
+                <label for="message" class="col-lg-2 col-form-label">
+                  Nội dung chi tiết&nbsp;<span class="u-text-red"
+                    >*</span
+                  ></label
+                >
+                <div class="col-lg-10">
+                  <textarea
+                    name="message"
+                    class="form-control page-contact__textarea"
+                    data-parsley-trigger="change"
+                    data-parsley-required="true"
+                    data-parsley-required-message="Vui lòng nhập nội dung chi tiết."
+                    data-parsley-maxlength="1000"
+                    data-parsley-maxlength-message="Vui lòng nhập nội dung chi tiết trong giới hạn 1000 ký tự"
+                    rows="14"
+                    id="message"
+                    placeholder="Vui lòng mô tả nhu cầu tư vấn kinh doanh hoặc kết nối đối tác của doanh nghiệp bạn."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="col-12 text-center mb-5 fw-medium">
+                Tôi đồng ý với Quy chế hoạt động và Chính sách bảo mật của
+                MIRAI VIET NAM
+              </div>
+
+              <div class="form-confirm d-flex justify-content-center">
+                <input
+                  type="button"
+                  class="btn-default btn-1 js-contact-confirm"
+                  value="Đồng ý và tiếp tục"
+                />
+              </div>
+            </div>
+            <div class="tab-preview row js-tab-contact justify-content-center">
+              <div class="col-sm-8">
+                <p class="message-detail">
+                  Vui lòng kiểm tra thông tin mà bạn đã nhập và nhấn nút
+                  &quot;GỬI&quot;.
+                </p>
+                <div class="group-info">
+                  <div class="label">
+                    Tên công ty&nbsp;<span class="u-text-red">*</span>
+                  </div>
+                  <div class="value company_name_text"></div>
+                </div>
+                <div class="group-info">
+                  <div class="label">
+                    Họ &amp; tên&nbsp;<span class="u-text-red">*</span>
+                  </div>
+                  <div class="value name_text"></div>
+                </div>
+                <div class="group-info">
+                  <div class="label">Điện thoại</div>
+                  <div class="value tel_text"></div>
+                </div>
+                <div class="group-info">
+                  <div class="label">
+                    Email&nbsp;<span class="u-text-red">*</span>
+                  </div>
+                  <div class="value mail_text"></div>
+                </div>
+                <div class="group-info">
+                  <div class="label">
+                    Loại nhu cầu&nbsp;<span class="u-text-red">*</span>
+                  </div>
+                  <div class="value inquiry_type_text"></div>
+                </div>
+                <div class="group-info">
+                  <div class="label">
+                    Nội dung chi tiết&nbsp;<span class="u-text-red">*</span>
+                  </div>
+                  <div class="value message_text"></div>
+                </div>
+                <div
+                  class="form-confirm d-flex flex-column flex-lg-row align-items-center justify-content-center preview-style"
+                >
+                  <div class="mb-2 mb-lg-0">
+                    <input
+                      type="button"
+                      class="btn-default btn-1 btn-box-shadow btn--back js-contact-back"
+                      value="TRỞ VỀ"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      type="button"
+                      class="btn-default btn-1 js-contact-submit"
+                      value="GỬI YÊU CẦU"
+                    />
+                  </div>
+
+                  <div id="captcha_contact_form" class="d-none"></div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto">
+      <div class="container footer__container">
+        <div class="row footer__navbar-nav text-white py-5">
+          <div class="col-lg-2">
+            <div class="footer__box">
+              <img
+                src=""
+                class="logo-2 w-100 lazyload"
+                data-src="assets/images/logo.png"
+                alt="Mirai Viet Nam"
+              />
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <ul class="list-unstyled mb-0">
+              <li><a class="text-white" href="index.html">Trang chủ</a></li>
+              <li><a class="text-white" href="company.html">Về MIRAI</a></li>
+              <li>
+                <a class="text-white" href="service.html"
+                  >Giới thiệu nhân sự</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="consulting.html"
+                  >Tư vấn kinh doanh</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="connect.html">Kết nối Việt - Nhật</a>
+              </li>
+              <li><a class="text-white" href="career.html">Việc làm</a></li>
+              <li><a class="text-white" href="news.html">Tin tức</a></li>
+              <li><a class="text-white" href="contact.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 footer__border">
+            <div class="footer__title">Thông tin liên hệ</div>
+            <p class="footer__link mb-1">
+              MIRAI VIET NAM HR CONSULTING
+              <br />
+              Tầng 4, Tòa nhà IMC, Số 62 Trần Quang Khải,
+              <br />
+              P. Tân Định, TP.HCM, Việt Nam
+            </p>
+            <p class="footer__link mb-1">
+              Email: hr.miraivietnam@gmail.com
+              <br />
+              Điện thoại: (+84) 933 643 654
+            </p>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 pe-lg-0">
+            <div class="footer__title">MIRAI JAPAN (Công ty mẹ)</div>
+            <p class="footer__link mb-1">
+              257 Kamikuroda, Thành phố Takaoka, Tỉnh Toyama, Nhật Bản
+              <br />
+              Chi nhánh Chiba: Tòa nhà Tokai Ozaki, 837-40 Ozaki, Thành phố
+              Noda, Tỉnh Chiba, Nhật Bản
+            </p>
+            <a
+              class="footer__link"
+              target="_blank"
+              rel="noopener"
+              href="https://miraijinzai.com/"
+              >Xem trang MIRAI JAPAN &rarr;</a
+            >
+          </div>
+        </div>
+
+        <div
+          class="row footer__copy-social g-0 flex-column-reverse flex-lg-row"
+        >
+          <p
+            class="col-12 footer__copy-right text-white align-self-center text-center text-lg-start mb-0"
+          >
+            Copyright &#169; 2026 MIRAI VIET NAM HR CONSULTING - All Rights
+            Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/manifest.js"></script>
+    <script src="js/vendors.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/contact.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".js-contact-submit").on("click", function () {
+          if ($(".js-contact-form").parsley().validate() !== false) {
+            var $notice = $("#js-demo-notice");
+            if ($notice.length === 0) {
+              $notice = $(
+                '<div id="js-demo-notice" style="max-width:500px;margin:0 auto 24px;padding:14px 20px;border-radius:8px;background:#fff3cd;color:#664d03;border:1px solid #ffe69c;text-align:center;font-weight:500;">Đây là bản demo tĩnh (clone) - biểu mẫu không được kết nối với máy chủ thật.</div>',
+              );
+              $(".js-tab-contact.active .form-confirm").before($notice);
+            }
+            $notice
+              .get(0)
+              .scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

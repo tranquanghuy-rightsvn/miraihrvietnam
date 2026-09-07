@@ -1,0 +1,406 @@
+/* MIRAI VIET NAM — site-wide custom overrides & additions
+   Loaded after app.css / vendors.css on every page. */
+
+/* Reserve the vertical scrollbar gutter up front so the page never
+   resizes horizontally between first paint (no scrollbar yet) and
+   after full load (scrollbar appears) — keeps full-bleed sections
+   like the hero banner pixel-stable at 100% width from first load. */
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* ---------- Home "Dịch vụ" boxes — keep the gap between heading and
+   description identical (1rem) across all 3 boxes regardless of the
+   mb-* utility class on the markup, and reserve 2 lines of height on
+   the heading so a longer title wrapping to 2 lines doesn't push that
+   box's description lower than its neighbors. ---------- */
+.service-box__heading {
+  margin-bottom: 1rem !important;
+  min-height: 2.5em;
+}
+
+/* ---------- Nav bar — sit tighter to the top edge ---------- */
+.nav-top {
+  --bs-navbar-padding-y: 8px;
+}
+.nav-top .nav-logo {
+  width: 56px;
+}
+@media (min-width: 992px) {
+  .nav-top {
+    --bs-navbar-padding-y: 10px;
+  }
+  .nav-top .nav-logo {
+    width: 74px;
+  }
+}
+
+/* ---------- "Dịch vụ" nav dropdown — a richer menu (number badge +
+   title + one-line description per service) than the plain compact
+   list used for the language switcher. Scoped to .service-menu only,
+   so the language dropdown keeps its own separate style untouched. ---------- */
+.service-menu {
+  --bs-dropdown-min-width: 0;
+  width: min(360px, calc(100vw - 40px));
+  padding: 10px;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px -10px rgba(4, 20, 45, 0.28);
+}
+.service-menu__item {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  padding: 10px !important;
+  border-radius: 10px;
+  white-space: normal;
+  text-transform: none;
+}
+.service-menu__item.active,
+.service-menu__item:hover,
+.service-menu__item:focus {
+  background: rgba(var(--custom-blue-3-rgb), 0.07) !important;
+  color: inherit !important;
+}
+.service-menu__num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  background: rgba(var(--custom-blue-3-rgb), 0.1);
+  color: rgb(var(--custom-blue-3-rgb));
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.service-menu__item.active .service-menu__num,
+.service-menu__item:hover .service-menu__num,
+.service-menu__item:focus .service-menu__num {
+  background: rgb(var(--custom-blue-3-rgb));
+  color: #fff;
+}
+.service-menu__body {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+  min-width: 0;
+}
+.service-menu__title {
+  font-weight: 600;
+  font-size: 14.5px;
+  color: rgb(var(--custom-dark-rgb));
+  text-transform: none;
+}
+.service-menu__desc {
+  font-size: 12px;
+  color: rgba(var(--custom-gray-4-rgb), 0.95);
+  text-transform: none;
+}
+@media (min-width: 992px) {
+  .service-menu {
+    width: 360px;
+    padding: 12px;
+    margin-top: 10px !important;
+  }
+}
+/* Clicking the toggle gives it keyboard focus, which otherwise
+   inherits the site's link hover/focus color (turns blue) and holds
+   it for as long as the menu stays open. The user just wants the
+   dropdown to open — no color change on the trigger itself. */
+.service-menu-toggle:focus,
+.service-menu-toggle.show {
+  color: var(--bs-nav-link-color) !important;
+}
+/* Bootstrap dropdowns toggle display:none/block instantly with no
+   transition. Animate it open with a short fade + slide-down instead. */
+.service-menu.show {
+  animation: service-menu-in 0.2s ease;
+}
+@keyframes service-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Fade-up-on-scroll reveal (see .js-fade-up in the JS at
+   the bottom of the page, which adds .is-visible via IntersectionObserver
+   the first time an element scrolls into view). ---------- */
+.js-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.js-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Shared building blocks ---------- */
+.field-block {
+  border: 1px solid rgba(var(--custom-gray-rgb), 0.6);
+  border-radius: 6px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.4s ease,
+    border-color 0.2s ease,
+    opacity 0.4s ease;
+}
+.field-block:hover {
+  box-shadow: 0 10px 24px rgba(0, 30, 70, 0.1);
+  border-color: rgba(var(--custom-blue-3-rgb), 0.35);
+  transform: translateY(-2px);
+}
+.field-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.field-block ul li {
+  position: relative;
+  padding-left: 1.6em;
+  margin-bottom: 0.65em;
+  line-height: 1.5;
+}
+.field-block ul li:last-child {
+  margin-bottom: 0;
+}
+.field-block ul li::before {
+  content: "\f00c";
+  font-family: FontAwesome;
+  font-size: 0.7rem;
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  color: #fff;
+  background: rgb(var(--custom-blue-3-rgb));
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.chip-grid .field-block {
+  flex: 1 1 220px;
+  max-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.1rem 0.9rem;
+  font-weight: 500;
+  background: #fff;
+}
+
+.step-number {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--custom-blue-1-rgb)),
+    rgb(var(--custom-blue-3-rgb))
+  );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: 0 6px 16px rgba(0, 84, 155, 0.28);
+}
+.step-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.25rem 1.5rem;
+}
+.step-row .step-col {
+  flex: 0 1 150px;
+  text-align: center;
+}
+.step-row .step-col + .step-col::before {
+  content: none;
+}
+@media (min-width: 992px) {
+  .step-row .step-col:not(:last-child) {
+    position: relative;
+  }
+  .step-row .step-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 29px;
+    left: calc(50% + 45px);
+    width: calc(100% - 20px);
+    border-top: 2px dashed rgba(var(--custom-blue-3-rgb), 0.3);
+  }
+}
+
+.check-list-item {
+  display: flex;
+  align-items: flex-start;
+}
+.check-list-item i {
+  color: rgb(var(--custom-blue-3-rgb));
+  font-size: 1.15rem;
+  margin-top: 0.15em;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ---------- Quick contact (floating) ---------- */
+.quick-contact {
+  position: fixed;
+  right: 18px;
+  bottom: 24px;
+  z-index: 1030;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quick-contact__link {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.quick-contact__link:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+.quick-contact__link--zalo {
+  background: #0068ff;
+  font-weight: 700;
+  font-size: 16px;
+}
+.quick-contact__link--phone {
+  background: rgb(var(--custom-blue-3-rgb));
+}
+.quick-contact__link--mail {
+  background: rgb(var(--custom-dark-rgb));
+}
+
+/* ---------- Hero (home) — the stock .header-title/.join__heading
+   sizes were tuned for 2-word taglines; our slogans are longer, so
+   we scale them down with clamp() to avoid overflow/clipping, and we
+   nudge the block lower so it doesn't crowd the tagline baked into
+   the background photo. ---------- */
+.page-home .header {
+  position: relative;
+}
+.page-home .header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 0;
+}
+.page-home .header > .container {
+  position: relative;
+  z-index: 1;
+}
+.page-home .header-text {
+  max-width: 640px;
+  width: 100%;
+  top: 58%;
+  transform: translateY(-50%);
+  text-align: left;
+}
+.page-home .header-title {
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem) !important;
+  max-width: 100% !important;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+.page-home .header-text .lead {
+  max-width: 480px;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.page-home .header-text .header-cta {
+  justify-content: flex-start;
+}
+@media (max-width: 991.98px) {
+  .page-home .header-text {
+    top: 62%;
+  }
+}
+
+/* ---------- "Về MIRAI" (join) section — same overflow issue as the
+   hero: the stock heading/box sizing assumed a 2-word title. We move
+   from absolute+transform centering (which clips on overflow) to a
+   normal flex-centered flow, and give the image real cover sizing. ---------- */
+.page-home .join {
+  height: auto;
+  min-height: 460px;
+  padding: 3.25rem 0;
+}
+.page-home .join__text {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  z-index: 1;
+  max-width: 720px;
+  padding: 0 1rem;
+}
+.page-home .join__heading {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem) !important;
+}
+.page-home .join__description {
+  padding-top: 1rem !important;
+  line-height: 1.9em !important;
+  font-size: 1rem !important;
+}
+.page-home .join__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.page-home .join::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 20, 45, 0.72),
+    rgba(4, 20, 45, 0.55)
+  );
+  z-index: 0;
+}
+
+/* ---------- Misc section polish ---------- */
+main h2.text-uppercase.fw-semibold {
+  color: rgb(var(--custom-dark-rgb));
+}
