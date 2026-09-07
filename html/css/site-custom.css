@@ -117,6 +117,17 @@ html {
 .service-menu-toggle.show {
   color: var(--bs-nav-link-color) !important;
 }
+/* The template's global `.nav-top .navbar-nav .nav-link.active
+   {pointer-events:none}` rule is meant to disable re-clicking a plain
+   "current page" nav link — but on service/consulting/connect it also
+   lands on the DỊCH VỤ dropdown toggle (marked .active to highlight
+   the current section), which silently killed the dropdown's
+   click-to-open behavior on those 3 pages. Restore clickability on
+   the toggle specifically; !important is needed to beat that rule's
+   higher-specificity compound selector. */
+.nav-top .navbar-nav .service-menu-toggle.active {
+  pointer-events: auto !important;
+}
 /* Bootstrap dropdowns toggle display:none/block instantly with no
    transition. Animate it open with a short fade + slide-down instead. */
 .service-menu.show {
@@ -369,8 +380,11 @@ html {
   z-index: 1;
 }
 .page-home .header-text {
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 0 0.75rem;
   max-width: 640px;
-  width: 100%;
   top: 58%;
   transform: translateY(-50%);
   text-align: left;
@@ -665,6 +679,18 @@ html {
   line-height: 1.5;
   color: rgba(var(--custom-gray-4-rgb), 0.95);
   text-align: center;
+}
+
+/* ---------- Contact page — merged candidate/employer/business tabs.
+   select2 measures its trigger's rendered width at init time and
+   bakes it into an inline style; the employer/business panels start
+   hidden (display:none) behind the "Ứng viên" tab, so their selects
+   measure 0 and select2 falls back to a tiny `width:auto` box instead
+   of matching the other full-width fields. Force full width in CSS
+   (!important beats the inline style) so it looks right regardless of
+   which tab happened to be visible when select2 initialized. ---------- */
+.select2-container--contact-select2 {
+  width: 100% !important;
 }
 
 /* ---------- Misc section polish ---------- */
