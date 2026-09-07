@@ -295,16 +295,58 @@ html {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   color: #fff;
 }
+.quick-contact__link--messenger {
+  background: #0084ff;
+}
 .quick-contact__link--zalo {
   background: #0068ff;
   font-weight: 700;
   font-size: 16px;
+}
+.quick-contact__link--line {
+  background: #06c755;
+  font-weight: 700;
+  font-size: 14px;
 }
 .quick-contact__link--phone {
   background: rgb(var(--custom-blue-3-rgb));
 }
 .quick-contact__link--mail {
   background: rgb(var(--custom-dark-rgb));
+}
+
+/* ---------- Home "Đối tác" logo strip ---------- */
+.partner-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem 2.5rem;
+}
+.partner-logos__item {
+  flex: 0 0 auto;
+  height: 42px;
+  display: flex;
+  align-items: center;
+}
+.partner-logos__item img {
+  max-height: 100%;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.65;
+  transition:
+    filter 0.2s ease,
+    opacity 0.2s ease;
+}
+.partner-logos__item img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+.partner-logos__note {
+  font-size: 0.85rem;
+  color: rgba(var(--custom-gray-4-rgb), 0.9);
 }
 
 /* ---------- Hero (home) — the stock .header-title/.join__heading
