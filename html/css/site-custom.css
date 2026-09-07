@@ -144,16 +144,30 @@ html {
   }
 }
 
-/* ---------- Fade-up-on-scroll reveal (see .js-fade-up in the JS at
-   the bottom of the page, which adds .is-visible via IntersectionObserver
-   the first time an element scrolls into view). ---------- */
+/* ---------- Fade-up-on-scroll reveal (see js/fade-up.js, shared
+   across every page that uses .js-fade-up — it adds .is-visible via
+   IntersectionObserver the first time an element scrolls into view).
+   The transition lives on the class itself so it works regardless of
+   which element it's applied to; stagger a group by adding an inline
+   `style="transition-delay: Nms"` per item (60ms steps is the
+   convention used elsewhere on the site). Respects reduced-motion. */
 .js-fade-up {
   opacity: 0;
   transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 .js-fade-up.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ---------- Shared building blocks ---------- */

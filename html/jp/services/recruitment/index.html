@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!-- preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300..600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- preload -->
+    <link rel="preload" href="/css/app.css" as="style" />
+    <link rel="stylesheet" type="text/css" href="/css/vendors.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/site-custom.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimal-ui"
+    />
+    <meta name="theme-color" content="#00549b" />
+    <meta name="csrf-token" content="" />
+
+    <title>
+      人材紹介 | MIRAI VIET NAM HR CONSULTING
+    </title>
+
+    <link rel="canonical" href="/jp/services/recruitment" />
+    <link
+      href="https://mirai-viet-nam.vercel.app/jp/services/recruitment"
+      hreflang="x-default"
+      rel="alternate"
+    />
+    <link href="/dich-vu/gioi-thieu-nhan-su" hreflang="vi" rel="alternate" />
+    <link href="/jp/services/recruitment" hreflang="ja" rel="alternate" />
+
+    <meta
+      name="description"
+      content="MIRAI VIET NAMは、日本企業およびベトナム国内企業の採用ニーズに合わせて、専門性・語学力・経験を備えた人材をご紹介します。"
+    />
+    <meta property="og:title" content="人材紹介 | MIRAI VIET NAM HR CONSULTING" />
+    <meta
+      property="og:description"
+      content="MIRAI VIET NAMは、日本企業およびベトナム国内企業の採用ニーズに合わせて、専門性・語学力・経験を備えた人材をご紹介します。"
+    />
+    <meta property="og:url" content="https://mirai-viet-nam.vercel.app/jp/services/recruitment" />
+    <meta property="og:image" content="/assets/images/ogp/iconic-intl-ogp.jpg" />
+    <meta property="og:site_name" content="MIRAI VIET NAM HR CONSULTING" />
+    <meta property="og:type" content="article" />
+    <!--/facebook-->
+
+    <meta name="twitter:title" content="人材紹介 | MIRAI VIET NAM HR CONSULTING" />
+    <meta
+      name="twitter:description"
+      content="MIRAI VIET NAMは、日本企業およびベトナム国内企業の採用ニーズに合わせて、専門性・語学力・経験を備えた人材をご紹介します。"
+    />
+    <meta name="twitter:url" content="https://mirai-viet-nam.vercel.app/jp/services/recruitment" />
+    <meta
+      name="twitter:image"
+      content="/assets/images/ogp/iconic-intl-ogp.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- IE -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/assets/images/common/icon/favicon-v1.ico"
+    />
+    <!-- other browsers -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/assets/images/common/icon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/images/common/icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/common/icon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/common/icon/apple-touch-icon.png"
+    />
+  </head>
+  <body class="page-service modify-page d-flex flex-column vh-100 font-ja">
+    <nav class="nav-top navbar navbar-expand-lg fixed-top" id="js-nav-top">
+      <div class="container">
+        <a class="nav-logo" href="/jp/">
+          <img
+            class="w-100"
+            src="/assets/images/logo.png"
+            alt="Mirai Viet Nam"
+          />
+        </a>
+        <div id="js-navbar-custom-toggler" class="navbar-custom-toggler">
+          <span class="bar bar1"></span>
+          <span class="bar bar2"></span>
+          <span class="bar bar3"></span>
+        </div>
+        <div
+          class="offcanvas-collapse navbar-collapse ms-lg-auto vh-100 u-vh-lg-auto pt-5 mt-n5 pt-lg-0 mt-lg-0"
+          id="js-offcanvas-collapse"
+        >
+          <ul
+            class="navbar-nav d-flex align-items-center ms-lg-auto mt-5 pt-5 mt-lg-0 pt-lg-0"
+          >
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/jp/"
+                >ホーム</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/jp/about">MIRAIについて</a>
+            </li>
+            <li class="nav-item dropdown">
+              <button
+                class="btn nav-link dropdown-toggle service-menu-toggle active"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                サービス
+              </button>
+              <ul class="dropdown-menu service-menu">
+                <li>
+                  <a class="dropdown-item service-menu__item active" href="/jp/services/recruitment">
+                    <span class="service-menu__num">01</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">人材紹介</span>
+                      <span class="service-menu__desc">ベトナム・日本間の人材採用</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="/jp/services/consulting">
+                    <span class="service-menu__num">02</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">ビジネスコンサルティング</span>
+                      <span class="service-menu__desc">ベトナム市場への参入・拡大</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item service-menu__item" href="/jp/services/connect">
+                    <span class="service-menu__num">03</span>
+                    <span class="service-menu__body">
+                      <span class="service-menu__title">ベトナム・日本連携</span>
+                      <span class="service-menu__desc">双方向の企業連携</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/jp/jobs">採用情報</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/jp/news">ニュース</a>
+            </li>
+
+            <li class="nav-item dropdown d-none d-lg-flex">
+              <button
+                class="btn nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  class="icon-white"
+                  alt="icon white"
+                  src="/assets/images/common/navigation/language-white.png"
+                />
+                <img
+                  class="icon-black"
+                  alt="icon black"
+                  src="/assets/images/common/navigation/language-black.png"
+                />
+                <span class="">JP</span>
+              </button>
+
+              <ul class="dropdown-menu text-capitalize">
+                <li>
+                  <a class="dropdown-item" href="/dich-vu/gioi-thieu-nhan-su"
+                    >Tiếng Việt</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item active" href="/jp/services/recruitment"
+                    >日本語</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="d-flex d-lg-none">
+              <ul class="list-unstyled d-flex justify-content-center w-100">
+                <li class="mx-3">
+                  <a class="nav-link" href="/dich-vu/gioi-thieu-nhan-su">VI</a>
+                </li>
+                <li class="d-flex align-items-center">
+                  <div
+                    class="bg-black opacity-100"
+                    style="width: 2px; height: 17px"
+                  ></div>
+                </li>
+                <li class="mx-3">
+                  <a class="nav-link active" href="/jp/services/recruitment">JP</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-top-contact">
+              <a class="btn-default btn-contact-nav" href="/jp/contact"
+                >お問い合わせ</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="u-margin-page">
+        <div class="container">
+          <nav class="u-padding-breadcrumb" aria-label="breadcrumb mb-0">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="breadcrumb__link" href="/jp/">ホーム</a>
+              </li>
+              <li class="breadcrumb-item">
+                <span>サービス</span>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">
+                人材紹介
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="text-center">
+          <h1 class="heading-2 u-margin-heading-2 mx-auto d-inline-block">
+            01｜人材紹介
+            <span class="underline"></span>
+          </h1>
+          <p class="text-center fs-5 fw-medium mb-0">
+            人と企業の可能性をつなぐ。
+          </p>
+        </div>
+
+        <div class="container">
+          <section class="service-recruiting" id="page-service-recruiting">
+            <div class="mb-4 pt-4">
+              <p class="service-recruiting__content">
+                MIRAI VIET NAMは、日本企業、ベトナムに進出する外資系企業、そしてベトナム国内企業の採用ニーズに合わせて、専門性・語学力・経験を兼ね備えた人材をご紹介します。
+              </p>
+              <p class="service-recruiting__content">
+                採用条件だけでなく、候補者の経験やキャリアの方向性、成長の可能性まで総合的に見極め、長期的に活躍できるマッチングを目指しています。
+              </p>
+            </div>
+
+            <div class="mb-4 pt-3">
+              <h2 class="service-recruiting__heading mb-4">主なサービス内容</h2>
+              <div class="row g-3">
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 0ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">日本語ができる人材のご紹介</p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 60ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    IT・機械・建設分野の技術人材
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 120ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    物流・マーケティング・貿易、事務・管理職人材
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 180ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    中間管理職・上級管理職・専門人材
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 240ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    ベトナムで働く日本人材のご紹介
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 300ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    在日外国人材のご紹介
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 0ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    特定技能人材
+                  </p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex js-fade-up" style="transition-delay: 60ms">
+                  <i
+                    class="fa fa-check-circle mt-1 me-3"
+                    style="color: rgb(var(--custom-blue-3-rgb)); font-size: 18px"
+                  ></i>
+                  <p class="mb-0">
+                    採用プロセスから入社手続きまでサポート
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-5 pt-4">
+              <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                <h3
+                  class="service-candidate__introduction text-center text-lg-start pt-2 pb-4 u-mb-extra"
+                >
+                  日本人求職者の方へ
+                </h3>
+                <div
+                  class="d-flex justify-content-lg-start justify-content-center"
+                >
+                  <a
+                    class="service-candidate__button"
+                    href="https://miraijinzai.com/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <span class="service-candidate__text">Mirai VietNam</span>
+                    <div class="service-candidate__wrap-button">
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <h3
+                  class="service-candidate__introduction u-padding-t-introduction text-center text-lg-start pt-2 pb-4 u-mb-extra"
+                >
+                  ベトナム人求職者の方へ
+                </h3>
+                <div
+                  class="d-flex flex-lg-row flex-column justify-content-lg-start justify-content-center pb-0"
+                >
+                  <a
+                    class="service-candidate__button mb-4 mb-lg-0 me-0 me-lg-5"
+                    href="/jp/jobs"
+                  >
+                    <span class="service-candidate__text">求人を見る</span>
+                    <div class="service-candidate__wrap-button">
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="section-contact pb-0 pt-0">
+          <div class="container text-center">
+            <h2
+              class="heading-2 u-override-font-size u-margin-heading-2 d-inline-block mx-auto"
+            >
+              お問い合わせ
+              <span class="underline"></span>
+            </h2>
+            <p class="section-contact__description">
+              採用のご相談がございましたら、お気軽にお問い合わせください。
+            </p>
+            <div class="d-flex justify-content-center">
+              <a class="btn-default btn-1" href="/jp/contact?tab=employer">
+                採用のご相談
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto">
+      <div class="container footer__container">
+        <div class="row footer__navbar-nav text-white py-5">
+          <div class="col-lg-2">
+            <div class="footer__box">
+              <img
+                src=""
+                class="logo-2 w-100 lazyload"
+                data-src="/assets/images/logo.png"
+                alt="Mirai Viet Nam"
+              />
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <ul class="list-unstyled mb-0">
+              <li><a class="text-white" href="/jp/">ホーム</a></li>
+              <li><a class="text-white" href="/jp/about">MIRAIについて</a></li>
+              <li>
+                <a class="text-white" href="/jp/services/recruitment"
+                  >人材紹介</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="/jp/services/consulting"
+                  >ビジネスコンサルティング</a
+                >
+              </li>
+              <li>
+                <a class="text-white" href="/jp/services/connect">ベトナム・日本連携</a>
+              </li>
+              <li><a class="text-white" href="/jp/jobs">採用情報</a></li>
+              <li><a class="text-white" href="/jp/news">ニュース</a></li>
+              <li><a class="text-white" href="/jp/contact">お問い合わせ</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 footer__border">
+            <div class="footer__title">お問い合わせ先</div>
+            <p class="footer__link mb-1">
+              MIRAI VIET NAM HR CONSULTING
+              <br />
+              ベトナム ホーチミン市 タンディン区
+              <br />
+              チャンクアンカイ通り62番地 IMCビル4階
+            </p>
+            <p class="footer__link mb-1">
+              Email: hr.miraivietnam@gmail.com
+              <br />
+              電話番号：(+84) 933 643 654
+            </p>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0 pe-lg-0">
+            <div class="footer__title">MIRAI JAPAN（親会社）</div>
+            <p class="footer__link mb-1">
+              日本 富山県高岡市上黒田257
+              <br />
+              千葉支店：千葉県野田市尾崎837-40 東海尾崎ビル
+            </p>
+            <a
+              class="footer__link"
+              target="_blank"
+              rel="noopener"
+              href="https://miraijinzai.com/"
+              >MIRAIJAPANのサイトを見る &rarr;</a
+            >
+          </div>
+        </div>
+
+        <div
+          class="row footer__copy-social g-0 flex-column-reverse flex-lg-row"
+        >
+          <p
+            class="col-12 footer__copy-right text-white align-self-center text-center text-lg-start mb-0"
+          >
+            Copyright &#169; 2026 MIRAI VIET NAM HR CONSULTING - All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendors.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/fade-up.js"></script>
+  </body>
+</html>
