@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[57],{3228:function(n,o,s){var l=s(4692);l(window).scroll((function(){l(this).scrollTop()>82?l("#js-nav-top").addClass("nav-top-after-scroll"):l("#js-nav-top").removeClass("nav-top-after-scroll")})),l(window).scroll()}},function(n){n.O(0,[96],(function(){return o=3228,n(n.s=o);var o}));n.O()}]);

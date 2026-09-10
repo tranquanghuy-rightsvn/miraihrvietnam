@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://miraihrvietnam.com/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/ve-mirai</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/ve-mirai" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/ve-mirai" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/about</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/ve-mirai" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/ve-mirai" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/ve-mirai" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/ve-mirai" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/services/recruitment</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/services/recruitment</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/recruitment" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/gioi-thieu-nhan-su" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/services/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/services/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/consulting" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/tu-van-kinh-doanh" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/connect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/connect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/services/connect</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/connect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/connect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/services/connect</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/services/connect" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/services/connect" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/dich-vu/ket-noi-viet-nhat" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/viec-lam</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/viec-lam" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/jobs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/jobs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/viec-lam" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/jobs</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/viec-lam" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/jobs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/jobs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/viec-lam" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/jobs</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/viec-lam" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/jobs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/jobs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/viec-lam" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/tin-tuc</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/news</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/news</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/tin-tuc/263</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/news/263</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/news/263</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/lien-he</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/lien-he" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/lien-he" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/jp/contact</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/lien-he" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/lien-he" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://miraihrvietnam.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/lien-he" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/lien-he" />
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
