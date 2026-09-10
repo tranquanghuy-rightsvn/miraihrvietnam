@@ -16348,14 +16348,15 @@ input:-webkit-autofill:hover {
   margin-bottom: 3.125rem;
 }
 .page-home .header {
-  background: url(../assets/images/common/header/bg-header.jpg) 73% / cover
-    no-repeat scroll;
+  background: url(../assets/images/common/header/bg-header-mobile.webp) 73% /
+    cover no-repeat scroll;
   height: 90vh;
   min-height: 500px;
   overflow: hidden;
 }
 @media (min-width: 992px) {
   .page-home .header {
+    background-image: url(../assets/images/common/header/bg-header.webp);
     background-attachment: fixed;
     height: 100vh;
   }
@@ -16649,7 +16650,7 @@ input:-webkit-autofill:hover {
 }
 .page-career .header-career {
   background-attachment: scroll;
-  background-image: url(../assets/images/career/bg-header-career-mobile.jpg);
+  background-image: url(../assets/images/career/bg-header-career-mobile.webp);
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16660,7 +16661,7 @@ input:-webkit-autofill:hover {
 @media (min-width: 992px) {
   .page-career .header-career {
     background-attachment: fixed;
-    background-image: url(../assets/images/career/bg-header-career.jpg);
+    background-image: url(../assets/images/career/bg-header-career.webp);
     height: 100vh;
     margin-top: 0;
   }
