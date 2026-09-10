@@ -16348,22 +16348,20 @@ input:-webkit-autofill:hover {
   margin-bottom: 3.125rem;
 }
 .page-home .header {
-  background: url(../assets/images/common/header/bg-header-mobile.webp) 73% /
-    cover no-repeat scroll;
-  height: 90vh;
-  min-height: 500px;
+  background: url(../assets/images/common/header/bg-header-mobile.webp) 50% /
+    contain no-repeat scroll;
+  aspect-ratio: 800 / 1431;
+  height: auto;
   overflow: hidden;
 }
 @media (min-width: 992px) {
   .page-home .header {
     background-image: url(../assets/images/common/header/bg-header.webp);
+    background-position: 73%;
+    background-size: cover;
     background-attachment: fixed;
+    aspect-ratio: auto;
     height: 100vh;
-  }
-}
-@media (max-width: 991.98px) {
-  .page-home .header {
-    max-height: 750px;
   }
 }
 .page-home .header-text {
@@ -16653,8 +16651,9 @@ input:-webkit-autofill:hover {
   background-image: url(../assets/images/career/bg-header-career-mobile.webp);
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 26.5625rem;
+  background-size: contain;
+  aspect-ratio: 800 / 1422;
+  height: auto;
   margin-top: 3.75rem;
   position: relative;
 }
@@ -16662,6 +16661,8 @@ input:-webkit-autofill:hover {
   .page-career .header-career {
     background-attachment: fixed;
     background-image: url(../assets/images/career/bg-header-career.webp);
+    background-size: cover;
+    aspect-ratio: auto;
     height: 100vh;
     margin-top: 0;
   }

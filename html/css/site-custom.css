@@ -434,7 +434,9 @@ html {
 }
 @media (max-width: 991.98px) {
   .page-home .header-text {
-    top: 62%;
+    top: 46%;
+    bottom: auto;
+    transform: none;
   }
 }
 
