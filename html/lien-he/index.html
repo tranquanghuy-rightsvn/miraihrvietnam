@@ -338,6 +338,7 @@
           >
             <input type="hidden" name="_method" value="POST" />
             <input type="hidden" name="_token" value="" autocomplete="off" />
+            <input type="text" name="_hp" value="" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" />
             <div class="tab-input js-tab-contact active">
               <div class="page-contact__required-message u-text-red">
                 Phần * bắt buộc nhập.
@@ -508,6 +509,7 @@
                   </div>
                   <div class="value message_text"></div>
                 </div>
+                <div class="contact-result" style="display:none;margin-bottom:18px;text-align:center;font-weight:600;"></div>
                 <div
                   class="form-confirm d-flex flex-column flex-lg-row align-items-center justify-content-center preview-style"
                 >
@@ -542,6 +544,7 @@
           >
             <input type="hidden" name="_method" value="POST" />
             <input type="hidden" name="_token" value="" autocomplete="off" />
+            <input type="text" name="_hp" value="" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" />
             <div class="tab-input js-tab-contact active">
               <div class="page-contact__required-message u-text-red">
                 Phần * bắt buộc nhập.
@@ -749,6 +752,7 @@
                   </div>
                   <div class="value message_text"></div>
                 </div>
+                <div class="contact-result" style="display:none;margin-bottom:18px;text-align:center;font-weight:600;"></div>
                 <div
                   class="form-confirm d-flex flex-column flex-lg-row align-items-center justify-content-center preview-style"
                 >
@@ -783,6 +787,7 @@
           >
             <input type="hidden" name="_method" value="POST" />
             <input type="hidden" name="_token" value="" autocomplete="off" />
+            <input type="text" name="_hp" value="" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" />
             <div class="tab-input js-tab-contact active">
               <div class="page-contact__required-message u-text-red">
                 Phần * bắt buộc nhập.
@@ -986,6 +991,7 @@
                   </div>
                   <div class="value message_text"></div>
                 </div>
+                <div class="contact-result" style="display:none;margin-bottom:18px;text-align:center;font-weight:600;"></div>
                 <div
                   class="form-confirm d-flex flex-column flex-lg-row align-items-center justify-content-center preview-style"
                 >
@@ -1115,7 +1121,15 @@
          tab's preview). So the first thing this script does is unbind
          those global handlers and replace them with scoped ones;
          its select2 init (which operates per-element and is safe to
-         leave as-is) is left in place. */
+         leave as-is) is left in place.
+
+         .js-contact-submit gửi thẳng tới CMS (Google Apps Script) qua fetch() - xem GAS.md mục
+         VI. google.script.run CHỈ chạy được trong trang do chính GAS phục vụ, site tĩnh domain
+         khác phải gọi qua /exec. Content-Type text/plain (KHÔNG phải application/json) là CỐ Ý
+         - né CORS preflight mà GAS không xử lý được (OPTIONS). */
+      var CMS_EXEC_URL =
+        "https://script.google.com/macros/s/AKfycbwwKX_fpWgnDRR2hFX7PpITPizRql2B26PmICXq-QJ_L4MCtn__5tlIqAqNjOjyKbxQsw/exec";
+
       $(document).ready(function () {
         $(".js-contact-confirm").off("click");
         $(".js-contact-back").off("click");
@@ -1193,14 +1207,52 @@
           });
 
           $form.find(".js-contact-submit").on("click", function () {
-            var $notice = $form.find(".js-demo-notice");
-            if ($notice.length === 0) {
-              $notice = $(
-                '<div class="js-demo-notice" style="max-width:500px;margin:0 auto 24px;padding:14px 20px;border-radius:8px;background:#fff3cd;color:#664d03;border:1px solid #ffe69c;text-align:center;font-weight:500;">Đây là bản demo tĩnh (clone) - biểu mẫu không được kết nối với máy chủ thật.</div>',
-              );
-              $previewStep.find(".form-confirm").before($notice);
-            }
-            $notice[0].scrollIntoView({ behavior: "smooth", block: "center" });
+            var $btn = $(this);
+            var $back = $form.find(".js-contact-back");
+            var $result = $form.find(".contact-result");
+            var originalValue = $btn.val();
+
+            var payload = {
+              type: $form.data("contact-panel"),
+              company_name: $form.find('[name="company_name"]').val() || "",
+              name: $form.find('[name="name"]').val() || "",
+              tel: $form.find('[name="tel"]').val() || "",
+              mail: $form.find('[name="mail"]').val() || "",
+              inquiry_type: $form.find('[name="inquiry_type"]').val() || "",
+              message: $form.find('[name="message"]').val() || "",
+              _hp: $form.find('[name="_hp"]').val() || "", // honeypot - người dùng thật không bao giờ điền
+            };
+
+            $btn.prop("disabled", true).val("Đang gửi...");
+            $back.prop("disabled", true);
+            $result.hide();
+
+            fetch(CMS_EXEC_URL, {
+              method: "POST",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(payload),
+            })
+              .then(function (res) { return res.json(); })
+              .then(function (data) {
+                if (!data.ok) throw new Error(data.error || "Có lỗi xảy ra, vui lòng thử lại.");
+                $result
+                  .css("color", "#1a9c4c")
+                  .text("Cảm ơn bạn! MIRAI VIET NAM đã nhận được yêu cầu và sẽ liên hệ lại sớm nhất.")
+                  .show();
+                $result[0].scrollIntoView({ behavior: "smooth", block: "center" });
+                // Ẩn nút Trở về / Gửi yêu cầu sau khi thành công - tránh gửi trùng lặp.
+                $btn.hide();
+                $back.hide();
+              })
+              .catch(function (err) {
+                $btn.prop("disabled", false).val(originalValue);
+                $back.prop("disabled", false);
+                $result
+                  .css("color", "#c0392b")
+                  .text((err && err.message) || "Có lỗi xảy ra, vui lòng thử lại.")
+                  .show();
+                $result[0].scrollIntoView({ behavior: "smooth", block: "center" });
+              });
           });
         });
       });

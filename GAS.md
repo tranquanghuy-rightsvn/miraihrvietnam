@@ -3,16 +3,19 @@
 Nguồn chốt cho mọi quyết định nghiệp vụ của CMS dự án này. Đọc TOÀN BỘ file này trước khi sửa bất
 kỳ file nào trong `gas/`. Theo playbook chung ở skill `free-cms-static-site-pipeline` (không lặp
 lại kiến thức chung ở đây, chỉ chốt quyết định riêng của dự án này). Dự án tham khảo gần nhất:
-`toponevn` (news + categories + users, cùng kiến trúc GitHub Contents API) — điểm khác biệt DUY
-NHẤT và quan trọng nhất: **tin tức + danh mục có 3 phiên bản ngôn ngữ Vi/En/Jp, dịch tự động**.
+`toponevn` (news + categories + users + liên hệ, cùng kiến trúc GitHub Contents API) — điểm khác
+biệt quan trọng nhất: **tin tức + danh mục có 3 phiên bản ngôn ngữ Vi/En/Jp, dịch tự động**; form
+liên hệ ở đây có **3 loại** (candidate/employer/business, mỗi loại field khác nhau) thay vì 1.
 
 ```
-0. Phạm vi (ĐÚNG 2 mục, không làm rộng hơn — khách yêu cầu "quản lý tin tức. Và người dùng"):
+0. Phạm vi (khách yêu cầu ban đầu "quản lý tin tức. Và người dùng", mở rộng thêm 2 lần sau đó):
    1. Tin tức (bài viết) 3 ngôn ngữ — full CRUD, dịch tự động Vi -> En/Jp.
-   2. Danh mục tin tức 3 ngôn ngữ — full CRUD, dịch tự động Vi -> En/Jp.
+   2. Danh mục tin tức 3 ngôn ngữ — full CRUD, dịch tự động Vi -> En/Jp, có trang công khai riêng.
    3. Quản lý người dùng — root (ngầm định) > admin > editor.
-   KHÔNG có: dịch vụ (6 trang /dich-vu/ giữ nguyên, sửa tay), liên hệ (form /lien-he/ giữ
-   nguyên cơ chế hiện có, KHÔNG đụng vào — ngoài phạm vi yêu cầu lần này).
+   4. Quản lý liên hệ (chốt lại 13/09/2026) — form công khai `/lien-he/` (3 loại: Ứng viên/Nhà
+      tuyển dụng/Tư vấn kinh doanh) lưu vào Sheet + gửi email thông báo, quản lý trạng thái qua
+      CMS (chỉ admin/root) — xem mục VI.
+   KHÔNG có: dịch vụ (6 trang /dich-vu/ giữ nguyên, sửa tay).
 
 I. Đối với tính năng đăng nhập (giống hệt mặc định playbook, xem gas-backend-patterns.md mục 1/2):
   1. Luồng: gửi OTP -> xác nhận -> vào trang Admin (không mật khẩu, không dựa session Google).
@@ -148,16 +151,67 @@ V. Đối với sửa/xoá tin tức & danh mục:
    - Sửa: slug bất biến (mục III/IV.2) — disable input khi mở bản ghi ĐÃ TỒN TẠI, bật lại khi mở
      form "tạo mới" (form tái sử dụng DOM — nhớ reset trạng thái disabled).
    - Xoá bài viết: xoá `data/news/<slugVi>/post.json` + gỡ khỏi `data/news/posts.json` + ảnh cover
-     (an toàn, 1-1). Xác nhận trước khi xoá (mục VII).
+     (an toàn, 1-1). Xác nhận trước khi xoá (mục VIII).
    - Xoá danh mục: CHẶN nếu còn bài viết nào có `cat` = `slugVi` danh mục đó (lỗi rõ ràng "còn N
      bài viết đang dùng danh mục này") — không tự động gán lại/xoá cascade.
 
-VI. Không áp dụng cho dự án này (ngoài phạm vi mục 0):
-   - Không có tính năng quản lý "dịch vụ" qua CMS (6 trang `/dich-vu/` giữ nguyên, sửa tay).
-   - Không có tính năng quản lý "liên hệ" qua CMS. Form `/lien-he/` (nếu có) giữ nguyên cơ chế
-     hiện tại của site, CMS này không nhận/không lưu/không proxy dữ liệu liên hệ.
+VI. Đối với form liên hệ công khai (`/lien-he/`) — chốt lại 13/09/2026:
+   - Site có SẴN 1 trang liên hệ gộp 3 form theo tab (`data-contact-panel`): **Ứng viên**
+     (`candidate`), **Nhà tuyển dụng** (`employer`), **Tư vấn kinh doanh** (`business`) - mỗi
+     loại field hơi khác nhau (vd `employer`/`business` có thêm `company_name`, mỗi loại có danh
+     sách `inquiry_type` riêng). Trước đây form này KHÔNG gửi đi đâu cả (`action="#"`, nút "GỬI
+     YÊU CẦU" chỉ hiện banner "bản demo tĩnh, chưa kết nối server" - còn sót lại từ lúc clone).
+   - **Gọi thẳng `doPost` của web app GAS qua `fetch()`** (sửa trực tiếp trong
+     `html/lien-he/index.html`, đoạn `<script>` cuối trang - KHÔNG tạo file JS riêng, vì trang
+     đã có sẵn 1 script xử lý tab + bước xác nhận/preview cho cả 3 form, chèn logic gửi vào đúng
+     handler `.js-contact-submit` có sẵn là gọn nhất) - `Content-Type: text/plain;charset=utf-8`
+     là CỐ Ý (né CORS preflight, GAS không xử lý được OPTIONS - xem gas-backend-patterns.md mục 6).
+   - Field gửi lên: `type` (`candidate`/`employer`/`business`, lấy từ `data-contact-panel` của
+     form đang active), `company_name`, `name`, `tel`, `mail`, `inquiry_type`, `message`, `_hp`
+     (honeypot, input ẩn bằng `style` INLINE ngay trên thẻ - CỐ Ý không dùng class CSS ở file
+     riêng, tránh đúng bẫy "rule CSS ẩn honeypot bị mất khi merge", gotcha #27). `name` và `mail`
+     là 2 field BẮT BUỘC duy nhất ở tầng server (validate chi tiết hơn - vd `company_name` bắt
+     buộc với employer/business - đã có sẵn ở tầng Parsley phía client, server chỉ chặn tối
+     thiểu, không lặp lại toàn bộ rule).
+   - `_hp` có giá trị → server âm thầm trả `{ok:true}`, KHÔNG lưu, KHÔNG gửi mail, không báo lỗi.
+   - Rate-limit: 20 giây/lần theo **email** (`mail`) - khác toponevn (dùng điện thoại) vì `tel`
+     ở đây KHÔNG bắt buộc, `mail` mới là field luôn chắc chắn có giá trị.
+   - **Lưu vào Sheet `Contacts` LÀ NGUỒN CHÍNH**, cột: `id, createdAt, type, companyName, name,
+     phone, email, inquiryType, message, status` (`status`: `"Mới"` | `"Đã xử lý"`, mặc định
+     `"Mới"`). Tự tạo LƯỜI (lazy) lúc lần đầu cần tới, không tạo sẵn lúc bootstrap Spreadsheet
+     như `Users` (gas-backend-patterns.md mục 7). Ghi Sheet xong luôn trả `{ok:true}`.
+   - **Gửi mail là BEST-EFFORT sau đó**: `MailApp.sendEmail` lỗi (chưa cấu hình `NOTIFY_EMAIL`,
+     quota Gmail...) chỉ `Logger.log`, KHÔNG throw - khách hàng KHÔNG được mất yêu cầu chỉ vì gửi
+     mail lỗi (đã có trong Sheet, xem được qua tab "Quản lý liên hệ").
+   - **Tiêu đề email CỐ ĐỊNH**: `[Miraihrvn.com] Liên hệ mới` (không đổi theo loại liên hệ - yêu
+     cầu tường minh của khách). **Loại liên hệ hiển thị RÕ RÀNG trong nội dung email** bằng 1
+     badge màu riêng từng loại (Ứng viên xanh lá `#1a9c4c`, Nhà tuyển dụng xanh dương
+     `#00549b`, Tư vấn kinh doanh tím `#7a3fe0` - map `CONTACT_TYPES` trong `Code.js`) - không
+     chỉ nhét vào 1 dòng text thường như các field khác, vì đây là thông tin quan trọng nhất để
+     người nhận mail biết cách xử lý yêu cầu.
+   - **Email thông báo dùng template HTML riêng** (`gas/email.html`, render qua
+     `HtmlService.createTemplateFromFile` + scriptlet `<?= ?>` - BẮT BUỘC dùng bản escaped,
+     không dùng `<?!= ?>`, vì mọi field đều là dữ liệu công khai chưa xác thực, tránh HTML/script
+     injection nếu ai đó cố tình điền thẻ HTML vào form). **Logo dùng file PNG riêng cho email**
+     (`html/assets/images/logo-email.png`, resize còn 242×260px từ `logo.png` gốc bằng `sips` -
+     nhiều ứng dụng mail không hiển thị được webp nếu sau này đổi logo chính sang webp, và ảnh
+     gốc 896×963px quá nặng/to cho email) - có `width`/`height` cố định trên thẻ `<img>` (không
+     chỉ CSS) để không vỡ layout kể cả khi ứng dụng mail cắt bớt `<style>`. URL logo TUYỆT ĐỐI
+     (`https://miraihrvietnam.com/assets/images/logo-email.png`) - ảnh email luôn cần domain
+     thật, không dùng đường dẫn tương đối. Nút hành động cuối email: có số điện thoại thì
+     "Gọi lại cho khách" (`tel:`), không có thì "Trả lời qua email" (`mailto:`).
+   - **Quản lý trong Admin** (tab "Quản lý liên hệ") - CHỈ `admin`/`root` (giống mục I.4 quản lý
+     người dùng): xem danh sách (mới nhất lên đầu), **lọc theo loại liên hệ** (dropdown Tất cả/
+     Ứng viên/Nhà tuyển dụng/Tư vấn kinh doanh - lọc phía client trên dữ liệu đã tải, không gọi
+     lại server mỗi lần đổi bộ lọc), đổi trạng thái Mới ⇄ Đã xử lý, xoá. `editor` không thấy tab
+     này (ẩn client + chặn server). Danh sách KHÔNG nằm trong `boot()` (giống `users`) - tải
+     riêng mỗi lần mở tab (không cache qua F5, đơn giản hơn boot cache vì không cần "hiện ngay
+     rồi mới làm mới" cho dữ liệu khách hàng ít khi cần mở gấp).
 
-VII. Một số lưu ý UX chung (áp dụng cho MỌI thao tác Lưu/Xoá/Dịch trong Admin) — giống mặc định
+VII. Không áp dụng cho dự án này (ngoài phạm vi mục 0):
+   - Không có tính năng quản lý "dịch vụ" qua CMS (6 trang `/dich-vu/` giữ nguyên, sửa tay).
+
+VIII. Một số lưu ý UX chung (áp dụng cho MỌI thao tác Lưu/Xoá/Dịch trong Admin) — giống mặc định
    playbook (xem gas-backend-patterns.md mục 17/18, gotchas #23-24):
    - 2 loại pop-up riêng biệt: XÁC NHẬN (Huỷ/Xoá) và THÔNG BÁO kết quả (1 nút Đóng, không tự ẩn).
    - Mọi nút async (Lưu/Xoá/Dịch): disable + spinner trong lúc chờ, tự phục hồi kể cả khi lỗi.
@@ -171,10 +225,14 @@ VII. Một số lưu ý UX chung (áp dụng cho MỌI thao tác Lưu/Xoá/Dịc
      bên trong tab "post-editor") — tránh bug init cao 0px khi init lúc container còn `display:
      none` (gotcha #24). Chỉ tab "post-editor" (ngoài cùng) mới ẩn/hiện qua `switchTab`.
 
-VIII. Kiến trúc lưu trữ (nơi gì nằm ở đâu, ai đọc/ghi):
+IX. Kiến trúc lưu trữ (nơi gì nằm ở đâu, ai đọc/ghi):
    - Google Sheet `Mirai HR CMS Data` (tự tạo lần đầu chạy, ID lưu vào Script Property
-     `SPREADSHEET_ID`) — 1 sheet:
+     `SPREADSHEET_ID`) — 2 sheet:
      - `Users` — cột: `email`, `role` (`admin` | `editor`).
+     - `Contacts` — cột: `id, createdAt, type, companyName, name, phone, email, inquiryType,
+       message, status` (`type`: `candidate`|`employer`|`business`, `status`: `"Mới"`|`"Đã xử
+       lý"`). Tự tạo LƯỜI (lazy) lúc lần đầu cần tới (form submit hoặc mở tab quản lý) - xem
+       mục VI.
    - GitHub (qua Contents API, repo `tranquanghuy-rightsvn/miraihrvietnam`, nhánh `master`) —
      đường dẫn cố định:
      - `data/news/posts.json` — index nhẹ mọi bài (field: `slugVi`, `slugIntl`, `cat`, `titleVi`,
@@ -186,10 +244,13 @@ VIII. Kiến trúc lưu trữ (nơi gì nằm ở đâu, ai đọc/ghi):
        `data/`, tránh duplicate).
    - File "danh sách tổng" (`data/news/posts.json`, `data/news/categories.json`) LUÔN ghi SAU
      CÙNG trong 1 thao tác Lưu/Xoá — đây là 2 file trigger GitHub Actions build (`tools/build.js`).
+     Liên hệ (mục VI) KHÔNG đụng tới GitHub/build - chỉ ghi Sheet + gửi mail, không có độ trễ
+     build/deploy nào cả (khác tin tức/danh mục).
    - Độ trễ thực tế từ lúc Lưu tới lúc thấy trên site thật: ~1-2 phút (GitHub Actions build +
-     commit `html/` + Cloudflare Pages tự deploy commit mới).
+     commit `html/` + Cloudflare Pages tự deploy commit mới) - riêng liên hệ thì tức thời (không
+     qua build).
 
-IX. Checklist bug đã thực sự gặp ở dự án này (cập nhật dần trong lúc code):
+X. Checklist bug đã thực sự gặp ở dự án này (cập nhật dần trong lúc code):
    - **Ảnh CHÈN TRONG NỘI DUNG bài viết không đọc được khi mở sửa trong Admin** (báo lỗi thật
      12/09/2026, Đại ca test). Nguyên nhân: nội dung lưu ảnh bằng đường dẫn TƯƠNG ĐỐI
      `/assets/images/<file>` (đúng quy ước để site thật `miraihrvietnam.com` hiển thị được bình
@@ -210,13 +271,17 @@ IX. Checklist bug đã thực sự gặp ở dự án này (cập nhật dần t
      thay vì đường dẫn tương đối như trước — cùng 1 bug, chỉ là lộ ra ngay sau lần chèn đầu tiên
      thay vì phải mở lại bài mới thấy. Bump `CLIENT_BUILD` lên `2026-09-11-b`.
 
-X. Script Properties (Project Settings > Script Properties trên script.google.com):
+XI. Script Properties (Project Settings > Script Properties trên script.google.com):
    - `GITHUB_TOKEN` — Fine-grained PAT, chỉ quyền Contents: Read and write, giới hạn đúng repo
      `miraihrvietnam`. Bắt buộc, không tự tạo được.
    - `GITHUB_OWNER` = `tranquanghuy-rightsvn`.
    - `GITHUB_REPO` = `miraihrvietnam`.
    - `GITHUB_BRANCH` = `master`.
    - `SPREADSHEET_ID` — KHÔNG tự điền, code tự tạo Sheet lần đầu chạy và tự lưu lại giá trị này.
+   - `NOTIFY_EMAIL` — bắt buộc nếu muốn form liên hệ (mục VI) gửi được mail thông báo; không có
+     giá trị mặc định hard-code trong code — chủ dự án tự khai. Không có = liên hệ vẫn lưu Sheet
+     bình thường, chỉ mất mail thông báo (xem mục VI). Dùng CHUNG quota Gmail 100 mail/ngày với
+     OTP đăng nhập.
 ```
 
 ## Ghi chú triển khai riêng của dự án này (khác mặc định playbook)
@@ -256,4 +321,11 @@ X. Script Properties (Project Settings > Script Properties trên script.google.c
   có sẵn trong bản clone gốc (`Tin tuyển dụng tại Nhật Bản`, `Thị trường lao động Nhật - Việt`,
   `Đầu tư & kinh doanh tại Việt Nam`, `Kết nối thương mại Việt - Nhật`) — không tự bịa danh mục
   nào khác ngoài 5 mục design gốc đã có tên sẵn (bao gồm cả `Visa / Tokutei Ginō`).
-- **6 trang dịch vụ + form liên hệ giữ nguyên, KHÔNG đụng tới** trong đợt build CMS này (mục VI).
+- **6 trang dịch vụ giữ nguyên, KHÔNG đụng tới** trong đợt build CMS này (mục VII).
+- **Form liên hệ (mục VI, thêm 13/09/2026)**: trước khi có CMS, `html/lien-he/index.html` vốn
+  là 1 trang demo tĩnh (3 tab candidate/employer/business gộp từ bản clone gốc, nút "GỬI YÊU CẦU"
+  chỉ hiện banner "chưa kết nối server"). Đã sửa TRỰC TIẾP đoạn `<script>` cuối file đó (thay nội
+  dung handler `.js-contact-submit`, giữ nguyên toàn bộ phần tab-switch/confirm/preview có sẵn)
+  để gọi thật `doPost` - không tạo file JS mới, không viết lại luồng tab/preview đã có.
+  `html/assets/images/logo-email.png` là ảnh MỚI (resize từ `logo.png` gốc bằng `sips -Z 260`,
+  242×260px, ~42KB) - `logo.png` gốc quá lớn (896×963px, ~300KB) để dùng trực tiếp trong email.
