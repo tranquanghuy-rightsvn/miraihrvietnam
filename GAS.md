@@ -1,0 +1,225 @@
+# Guideline GAS CMS — iconic (Mirai Viet Nam HR Consulting, miraihrvietnam.com)
+
+Nguồn chốt cho mọi quyết định nghiệp vụ của CMS dự án này. Đọc TOÀN BỘ file này trước khi sửa bất
+kỳ file nào trong `gas/`. Theo playbook chung ở skill `free-cms-static-site-pipeline` (không lặp
+lại kiến thức chung ở đây, chỉ chốt quyết định riêng của dự án này). Dự án tham khảo gần nhất:
+`toponevn` (news + categories + users, cùng kiến trúc GitHub Contents API) — điểm khác biệt DUY
+NHẤT và quan trọng nhất: **tin tức + danh mục có 3 phiên bản ngôn ngữ Vi/En/Jp, dịch tự động**.
+
+```
+0. Phạm vi (ĐÚNG 2 mục, không làm rộng hơn — khách yêu cầu "quản lý tin tức. Và người dùng"):
+   1. Tin tức (bài viết) 3 ngôn ngữ — full CRUD, dịch tự động Vi -> En/Jp.
+   2. Danh mục tin tức 3 ngôn ngữ — full CRUD, dịch tự động Vi -> En/Jp.
+   3. Quản lý người dùng — root (ngầm định) > admin > editor.
+   KHÔNG có: dịch vụ (6 trang /dich-vu/ giữ nguyên, sửa tay), liên hệ (form /lien-he/ giữ
+   nguyên cơ chế hiện có, KHÔNG đụng vào — ngoài phạm vi yêu cầu lần này).
+
+I. Đối với tính năng đăng nhập (giống hệt mặc định playbook, xem gas-backend-patterns.md mục 1/2):
+  1. Luồng: gửi OTP -> xác nhận -> vào trang Admin (không mật khẩu, không dựa session Google).
+  2. Chỉ email đã ĐĂNG KÝ (có trong sheet Users) mới được gửi OTP.
+  3. Account chủ của GAS (người deploy) LUÔN hợp lệ/luôn có quyền cao nhất — KHÔNG lưu vào sheet
+     Users, KHÔNG hiện trong UI quản lý người dùng.
+  4. Phân quyền 3 cấp: `root` (chủ script, ẩn, ngầm định) > `admin` > `editor`.
+     - `root`: toàn quyền, không quản lý được qua CMS (sửa tay Sheet nếu cần đổi ngoại lệ).
+     - `admin`: làm mọi việc `editor` làm được, CỘNG THÊM tự thêm/sửa/xoá user cấp `admin` và
+       `editor` khác qua CMS (không được đụng dòng `root`).
+     - `editor`: CRUD tin tức + danh mục tin tức (cả 3 ngôn ngữ). KHÔNG thấy tab "Quản lý người
+       dùng" (ẩn ở UI) và server cũng tự chặn nếu gọi thẳng hàm quản lý user.
+  5. OTP 6 số, sống 10 phút (CacheService), cooldown 60 giây giữa 2 lần xin liên tiếp cùng 1 email,
+     tối đa 5 lần nhập sai rồi phải xin mã mới. Token phiên đăng nhập sống 30 ngày, lưu localStorage.
+  6. Server luôn tự kiểm tra quyền ở MỌI hành động (`requireRole_`).
+
+II. Đối với "tin tức" (bài viết) — full CRUD, 3 NGÔN NGỮ:
+  1. Luồng nhập liệu: người viết nhập ĐẦY ĐỦ bản tiếng Việt trước (tiêu đề, mô tả ngắn, nội
+     dung), bấm nút "Dịch sang English + 日本語" (gọi `translatePost`, dùng `LanguageApp.translate`
+     — dịch máy miễn phí, xem mục 0b) để tự động điền bản En/Jp, sau đó có thể tự sửa lại bản
+     En/Jp trước khi Lưu (KHÔNG bắt buộc dịch lại mỗi lần sửa — dịch chỉ là gợi ý điền sẵn, người
+     dùng toàn quyền ghi đè). Cả 3 bản (Vi/En/Jp) lưu chung 1 lần bấm "Lưu bài viết", gửi lên
+     server trong CÙNG 1 lời gọi `savePost`.
+  2. Các field CÓ ô nhập (nhân 3 cho mỗi ngôn ngữ, trừ field dùng chung ghi rõ bên dưới):
+     - Tiêu đề: `titleVi`, `titleEn`, `titleJp` — BẮT BUỘC cả 3 (không cho Lưu nếu thiếu bất kỳ
+       bản nào, tránh xuất bản trang thiếu nội dung ở 1 ngôn ngữ).
+     - Slug: SINH TỰ ĐỘNG, KHÔNG có ô nhập tự do trên giao diện chính (chỉ hiện disabled để xem):
+       - `slugVi` = slugify(`titleVi`) — quyết định URL `/tin-tuc/<slugVi>/`.
+       - `slugIntl` = slugify(`titleEn`) — DÙNG CHUNG cho cả En VÀ Jp (đúng yêu cầu gốc: "tiếng
+         anh và nhật thì cùng slug, chỉ khác /en hoặc /jp"), quyết định URL
+         `/en/news/<slugIntl>/` VÀ `/jp/news/<slugIntl>/`.
+       - Cả 2 slug tính LẦN ĐẦU lúc Lưu (từ tiêu đề tại thời điểm đó) rồi BẤT BIẾN vĩnh viễn sau
+         đó — sửa tiêu đề sau này (kể cả tiêu đề Vi/En) KHÔNG đổi slug đã chốt (xem mục III).
+     - Danh mục (`cat`) — dropdown chọn theo TÊN TIẾNG VIỆT của danh mục, lưu giá trị `slugVi`
+       của danh mục đó (field DÙNG CHUNG cho cả 3 ngôn ngữ — 1 bài chỉ thuộc 1 danh mục, hiển thị
+       tên đúng ngôn ngữ trang đang xem lúc build). Bắt buộc phải có ít nhất 1 danh mục trước khi
+       tạo bài (CMS nhắc tạo danh mục trước nếu danh sách rỗng).
+     - Ngày đăng (`date`) — DÙNG CHUNG cho cả 3 ngôn ngữ (không có khái niệm ngày đăng khác nhau
+       theo ngôn ngữ). Mặc định hôm nay lúc tạo mới, sửa được tự do (không bất biến).
+     - Ảnh cover (`img`) — DÙNG CHUNG cho cả 3 ngôn ngữ (không có ảnh riêng theo ngôn ngữ). Upload
+       thay thế, KHÔNG sửa tay filename. Lưu dạng đường dẫn TƯƠNG ĐỐI tính từ `/assets/images/`
+       (vd `"news-ky-7-tokutei-gino-abc123.webp"` cho ảnh CMS upload MỚI, hoặc
+       `"news/thumb-1.jpg"` cho ảnh cũ đã có sẵn từ trước khi có CMS — build.js luôn ghép
+       `/assets/images/` + giá trị field này, KHÔNG suy đoán thêm đuôi/tiền tố nào khác).
+     - Mô tả ngắn/excerpt (`excerptVi`, `excerptEn`, `excerptJp`) — DÙNG CHUNG cho cả thẻ tin tức
+       (card) VÀ `<meta name="description">`/`og:description` của trang chi tiết (không tách
+       riêng 2 field mô tả khác nhau — giữ CMS gọn, đúng field thật đang cần).
+     - Nội dung (`contentVi`, `contentEn`, `contentJp`) — mỗi bản 1 ô TinyMCE riêng, xuất HTML
+       (h2/h3/p/ul/strong/figure...), in thẳng vào khung `.news-content` của trang chi tiết đúng
+       ngôn ngữ. CÓ nút "Chèn ảnh" nhanh trên toolbar mỗi ô (mở thẳng file picker, không qua
+       dialog mặc định — xem gas-backend-patterns.md mục 4), dùng chung `uploadPostImage` (khoá
+       theo `slugVi`, không phân biệt ảnh chèn ở bản Vi/En/Jp — cả 3 dùng chung 1 "kho" ảnh nội
+       dung của bài, đánh số tăng dần qua field ẩn `data-qi` lúc chèn, xem `insertContent_image`
+       trong Code.js). Ảnh chèn KHÔNG có figure/caption/alt tự động (ngoài phạm vi yêu cầu ban
+       đầu — giống quyết định của toponevn) — `alt` để trống, sửa tay HTML nếu cần.
+       **Không hỗ trợ dán/kéo-thả ảnh trực tiếp** (`paste_data_images: false`) — chỉ chèn qua nút.
+  3. Field KHÔNG có ô nhập — server tự giữ/suy ra lúc Lưu:
+     - `slugVi`/`slugIntl` sau lần Lưu đầu — xem mục II.2 + III.
+     - `catName` (tên danh mục hiển thị) — build.js tự tra từ `categories.json` theo `cat` +
+       ngôn ngữ trang đang build, KHÔNG lưu trùng lặp trong post.
+     - `<title>` trang chi tiết — build.js tự ghép `<Tiêu đề theo ngôn ngữ> | MIRAI VIET NAM HR
+       CONSULTING` (Vi/En dùng `|`, Jp dùng `｜` full-width — đúng quy ước gốc của 6 trang cũ đã
+       có sẵn trước CMS). KHÔNG có ô nhập "SEO title" riêng (khác toponevn) — CMS này không cần
+       field đó, tiêu đề trang suy thẳng từ `titleVi/En/Jp` + hậu tố cố định.
+  4. Danh sách trong Admin tải từ `data/news/posts.json` (index nhẹ) qua GitHub Contents API mỗi
+     lần mở boot; mở 1 bài để sửa mới tải `data/news/<slugVi>/post.json` đầy đủ.
+  5. Ảnh: nén phía CLIENT (canvas) trước khi upload — cạnh dài tối đa 1600px, xuất `image/webp`
+     chất lượng ~0.85 (rơi về `image/png` nếu trình duyệt không hỗ trợ encode webp — server đọc
+     đúng mime thật để đặt đuôi file, không suy đoán trước). Ảnh cover RIÊNG 1-1 theo từng bài
+     (đặt tên tất định theo `slugVi`, đổi ảnh mới thì thêm hậu tố timestamp để cache-bust).
+
+II-b. Dịch tự động (Vi -> En/Jp) — CHỐT DÙNG `LanguageApp.translate()` (miễn phí, có sẵn trong
+   Apps Script, nền Google Translate):
+   - Hàm `translatePost(token, {titleVi, excerptVi, contentVi})` trả về
+     `{titleEn, excerptEn, contentEn, titleJp, excerptJp, contentJp}`.
+   - `titleVi`/`excerptVi` dịch thẳng (plain text). `contentVi` (HTML) dịch bằng cách TÁCH riêng
+     thẻ HTML và đoạn text (regex split theo `<[^>]+>`), CHỈ dịch phần text, giữ nguyên mọi thẻ —
+     tránh dịch máy làm hỏng cấu trúc HTML (thẻ `<figure>`, `<strong>`...).
+   - Ngôn ngữ đích cho "Nhật" dùng mã `ja` khi gọi `LanguageApp.translate` (ISO 639-1 thật của
+     tiếng Nhật) — KHÔNG nhầm với tiền tố thư mục site `/jp/` (2 thứ khác nhau, `jp` chỉ là tên
+     thư mục quy ước của site, không phải mã ngôn ngữ).
+   - 1 lần dịch 1 bài gọi nhiều lượt `LanguageApp.translate` nhỏ (mỗi đoạn text) thay vì 1 lượt
+     dịch cả khối HTML — CHẤP NHẬN ĐƯỢC ở quy mô CMS tin tức nội bộ (vài chục bài/tháng), không
+     tối ưu gộp batch vì `LanguageApp` không hỗ trợ dịch mảng.
+   - **Chất lượng dịch máy, KHÔNG phải dịch chuyên nghiệp** — chốt với khách (câu hỏi rõ ràng đã
+     hỏi lại, khách chọn phương án miễn phí thay vì Cloud Translation API trả phí/setup phức tạp
+     hơn) — người viết PHẢI tự đọc lại và sửa bản En/Jp trước khi Lưu nếu cần chính xác cao hơn,
+     CMS không tự đảm bảo bản dịch đúng 100%. Có thể nâng cấp sang Cloud Translation API sau này
+     nếu khách phản hồi chất lượng không đủ (đổi 1 hàm `translateText_`/`translateHtml_`, không
+     đổi kiến trúc còn lại).
+
+III. Đối với sửa tin tức:
+   - `slugVi` VÀ `slugIntl` bất biến TUYỆT ĐỐI sau lần Lưu đầu tiên — chặn ở SERVER (`throw` nếu
+     khác) VÀ client (disable input, dù input này vốn đã ẩn/chỉ-đọc với người dùng thường — xem
+     mục II.2). Đổi tiêu đề Vi/En sau khi đã lưu KHÔNG đổi lại 2 slug này.
+   - Ảnh hiển thị lúc sửa dùng URL TUYỆT ĐỐI (`raw.githubusercontent.com/tranquanghuy-rightsvn/
+     miraihrvietnam/master/html/assets/images/<img>`), KHÔNG dùng domain thật (site có thể chưa
+     deploy bản mới nhất).
+   - Đổi ảnh: tên file mới có hậu tố timestamp base36 để cache-bust. File ảnh cũ KHÔNG bị xoá
+     qua API khi CHỈ đổi ảnh cover (đỡ 1 API call, ảnh cũ mồ côi vô hại) — chỉ field `img` trỏ
+     sang file mới. Xoá HẲN bài viết thì xoá kèm đúng ảnh cover hiện tại (an toàn, 1-1).
+
+IV. Đối với "danh mục tin tức" — full CRUD, tách hẳn khỏi bài viết, 3 NGÔN NGỮ:
+  1. Luồng nhập liệu giống bài viết: nhập `nameVi` trước, bấm "Dịch" (`translateCategory`) để tự
+     điền `nameEn`/`nameJp`, có thể sửa lại trước khi Lưu. Cả 3 tên BẮT BUỘC khi tạo mới.
+  2. Field: `nameVi`, `nameEn`, `nameJp` (sửa được tự do sau khi tạo — KHÔNG bất biến, khác slug).
+     `slugVi` = slugify(`nameVi`), `slugIntl` = slugify(`nameEn`) — tính 1 LẦN lúc tạo, bất biến
+     sau đó (quyết định URL — dự án này CHƯA có trang danh mục riêng, xem mục IV.4, nhưng vẫn
+     khoá bất biến ngay từ đầu để không phải xử lý rename phức tạp nếu sau này thêm trang đó).
+  3. Danh sách tải từ `data/news/categories.json` qua GitHub Contents API mỗi lần mở.
+  4. **KHÔNG có trang danh mục công khai riêng** (`/tin-tuc/danh-muc/<slug>/`) trong phạm vi lần
+     này — khác toponevn. Danh mục hiện tại chỉ dùng để: (a) gắn nhãn/lọc bài viết trong Admin,
+     (b) hiển thị tên danh mục trên thẻ `article-meta__tag` của trang chi tiết bài viết, (c) liệt
+     kê TOÀN BỘ danh mục hiện có trong khối sidebar "Danh mục"/"Categories"/"カテゴリー" của trang
+     chi tiết VÀ trang danh sách tin tức — mỗi mục trỏ về trang danh sách tin tức chung
+     (`/tin-tuc`, `/en/news`, `/jp/news`), KHÔNG lọc theo danh mục (vì chưa có trang lọc). Đây là
+     thay thế cho danh sách 5 mục TĨNH (không có dữ liệu thật phía sau) vốn có sẵn trong bản clone
+     gốc. Nếu sau này cần trang lọc theo danh mục thật, đó là tính năng thêm mới cần hỏi lại.
+
+V. Đối với sửa/xoá tin tức & danh mục:
+   - Sửa: slug bất biến (mục III/IV.2) — disable input khi mở bản ghi ĐÃ TỒN TẠI, bật lại khi mở
+     form "tạo mới" (form tái sử dụng DOM — nhớ reset trạng thái disabled).
+   - Xoá bài viết: xoá `data/news/<slugVi>/post.json` + gỡ khỏi `data/news/posts.json` + ảnh cover
+     (an toàn, 1-1). Xác nhận trước khi xoá (mục VII).
+   - Xoá danh mục: CHẶN nếu còn bài viết nào có `cat` = `slugVi` danh mục đó (lỗi rõ ràng "còn N
+     bài viết đang dùng danh mục này") — không tự động gán lại/xoá cascade.
+
+VI. Không áp dụng cho dự án này (ngoài phạm vi mục 0):
+   - Không có tính năng quản lý "dịch vụ" qua CMS (6 trang `/dich-vu/` giữ nguyên, sửa tay).
+   - Không có tính năng quản lý "liên hệ" qua CMS. Form `/lien-he/` (nếu có) giữ nguyên cơ chế
+     hiện tại của site, CMS này không nhận/không lưu/không proxy dữ liệu liên hệ.
+
+VII. Một số lưu ý UX chung (áp dụng cho MỌI thao tác Lưu/Xoá/Dịch trong Admin) — giống mặc định
+   playbook (xem gas-backend-patterns.md mục 17/18, gotchas #23-24):
+   - 2 loại pop-up riêng biệt: XÁC NHẬN (Huỷ/Xoá) và THÔNG BÁO kết quả (1 nút Đóng, không tự ẩn).
+   - Mọi nút async (Lưu/Xoá/Dịch): disable + spinner trong lúc chờ, tự phục hồi kể cả khi lỗi.
+   - Sau Lưu/Xoá thành công: danh sách trong Admin tự cập nhật ngay, quay lại đúng màn danh sách.
+   - Chuyển tab trong Admin chỉ là hiệu ứng giao diện — không tải lại toàn trang.
+   - Đăng nhập lần đầu: 1 lượt `boot(token)` duy nhất. Lần vào Admin sau: hiện ngay từ cache
+     localStorage (stale-while-revalidate), rồi âm thầm làm mới.
+   - Mọi key localStorage (TRỪ token đăng nhập) mang hậu tố `CLIENT_BUILD`, kèm hàm tự dọn key
+     khác phiên bản lúc tải script. **Bump hằng số này mỗi lần sửa `app.html`/`js.html`.**
+   - Cả 3 ô TinyMCE (Vi/En/Jp) của 1 bài viết nằm CÙNG LÚC trong DOM (không ẩn bằng tab con lồng
+     bên trong tab "post-editor") — tránh bug init cao 0px khi init lúc container còn `display:
+     none` (gotcha #24). Chỉ tab "post-editor" (ngoài cùng) mới ẩn/hiện qua `switchTab`.
+
+VIII. Kiến trúc lưu trữ (nơi gì nằm ở đâu, ai đọc/ghi):
+   - Google Sheet `Mirai HR CMS Data` (tự tạo lần đầu chạy, ID lưu vào Script Property
+     `SPREADSHEET_ID`) — 1 sheet:
+     - `Users` — cột: `email`, `role` (`admin` | `editor`).
+   - GitHub (qua Contents API, repo `tranquanghuy-rightsvn/miraihrvietnam`, nhánh `master`) —
+     đường dẫn cố định:
+     - `data/news/posts.json` — index nhẹ mọi bài (field: `slugVi`, `slugIntl`, `cat`, `titleVi`,
+       `titleEn`, `titleJp`, `date`, `img`, `excerptVi`, `excerptEn`, `excerptJp`, `updatedAt`).
+     - `data/news/<slugVi>/post.json` — nội dung đầy đủ 1 bài (thêm `contentVi`, `contentEn`,
+       `contentJp`).
+     - `data/news/categories.json` — mảng `{slugVi, slugIntl, nameVi, nameEn, nameJp}`.
+     - `html/assets/images/<img>` — ảnh cover/nội dung, ghi THẲNG vào vị trí site thật (không qua
+       `data/`, tránh duplicate).
+   - File "danh sách tổng" (`data/news/posts.json`, `data/news/categories.json`) LUÔN ghi SAU
+     CÙNG trong 1 thao tác Lưu/Xoá — đây là 2 file trigger GitHub Actions build (`tools/build.js`).
+   - Độ trễ thực tế từ lúc Lưu tới lúc thấy trên site thật: ~1-2 phút (GitHub Actions build +
+     commit `html/` + Cloudflare Pages tự deploy commit mới).
+
+IX. Checklist bug đã thực sự gặp ở dự án này (cập nhật dần trong lúc code):
+   - (chưa phát sinh — dự án mới dựng lần đầu 11/09/2026, ghi bổ sung khi gặp thật).
+
+X. Script Properties (Project Settings > Script Properties trên script.google.com):
+   - `GITHUB_TOKEN` — Fine-grained PAT, chỉ quyền Contents: Read and write, giới hạn đúng repo
+     `miraihrvietnam`. Bắt buộc, không tự tạo được.
+   - `GITHUB_OWNER` = `tranquanghuy-rightsvn`.
+   - `GITHUB_REPO` = `miraihrvietnam`.
+   - `GITHUB_BRANCH` = `master`.
+   - `SPREADSHEET_ID` — KHÔNG tự điền, code tự tạo Sheet lần đầu chạy và tự lưu lại giá trị này.
+```
+
+## Ghi chú triển khai riêng của dự án này (khác mặc định playbook)
+
+- **Build script dùng Node.js (`tools/build.js`)** — repo chưa có build script nào từ trước
+  (khác toponevn kế thừa quy ước cũ), chọn Node vì đây là 1 dự án Next.js/Node-tooling gốc
+  (xem `package.json` ở monorepo cha) dù bản thân site tĩnh này không dùng Next.js runtime.
+- **URL không có trailing slash** (`/tin-tuc/<slug>`, `/en/news/<slug>`, `/jp/news/<slug>`) —
+  giữ đúng quy ước đã có sẵn từ bản clone gốc (Cloudflare Pages serve `index.html` trong thư mục
+  con dù URL không có `/` cuối).
+- **`html/vendor/tinymce/` copy nguyên từ dự án `toponevn`** (cùng tổ chức, bản 6.8.5 đã kiểm
+  chứng chạy thật trong iframe sandbox, đã vá sẵn bug thiếu plugin `lists`) — KHÔNG tải lại từ
+  CDN, lý do giống hệt toponevn (CDN bị chặn khi nhúng iframe trong `/admin/`, xem
+  `gas-backend-patterns.md` mục "TinyMCE tự host").
+- **Không có trang `/admin-gas/` dự phòng** — khác khuyến nghị mặc định của playbook (mục 6a
+  `static-site-build.md`, "BẮT BUỘC có trang dự phòng"). Đây là yêu cầu TƯỜNG MINH của khách,
+  đã hỏi lại và xác nhận 2 lần ("chỉ dùng /admin/, không dùng admin-gas" — "Bỏ hẳn, chỉ /admin/").
+  **Rủi ro đã báo trước và khách chấp nhận**: nếu trình duyệt nào chặn nhúng iframe (vd đăng nhập
+  Google Workspace tổ chức — xem gotcha #25), Admin sẽ treo trắng không có đường lui nhanh; cách
+  khắc phục tạm là mở thẳng URL `.../exec` (xem `gas/README.md`) — KHÔNG tự ý thêm lại
+  `/admin-gas/` nếu khách chưa đổi ý.
+- **URL web app**: `https://script.google.com/macros/s/AKfycbwwKX_fpWgnDRR2hFX7PpITPizRql2B26PmICXq-QJ_L4MCtn__5tlIqAqNjOjyKbxQsw/exec`
+  — đã dán vào `html/admin/index.html` (hằng số `CMS_URL`). Đổi deployment (New deployment,
+  không phải New version) sẽ sinh URL khác — phải cập nhật lại đúng chỗ này.
+- **Bài viết mẫu "263" từ bản clone gốc**: đã migrate thành bản ghi CMS thật đầu tiên (không bỏ
+  qua, không xoá — theo yêu cầu khách), đổi `slugVi` từ `"263"` (id số, không có ý nghĩa) sang
+  `"ky-7-tokutei-gino"` và `slugIntl` sang `"part-7-tokutei-gino"` (tiêu đề đã có sẵn phần
+  "Kỳ 7"/"Part 7" nên đặt tên theo đó cho dễ nhận biết — không tự dịch/sinh lại vì đây là 1 hành
+  động migrate thủ công 1 lần, không phải logic code). Nội dung Vi/En/Jp lấy NGUYÊN VĂN 3 bản đã
+  có sẵn trong `html/tin-tuc/263/`, `html/en/news/263/`, `html/jp/news/263/` (bản dịch người viết
+  tay từ trước khi có CMS — CHẤT LƯỢNG TỐT HƠN dịch máy, nên KHÔNG chạy lại `translatePost` cho
+  bài này). Danh mục "Visa / Tokutei Ginō" (Vi/En) / "ビザ／特定技能（Tokutei Ginō）" (Jp) tạo kèm
+  làm danh mục CMS đầu tiên (`slugVi`: `visa-tokutei-gino`, `slugIntl`: `visa-tokutei-gino`).
+  5 mục danh mục tĩnh khác từng thấy ở sidebar bản clone gốc (không có dữ liệu bài viết thật phía
+  sau, chỉ là placeholder) **KHÔNG được tạo lại** — xem mục IV.4.
+- **6 trang dịch vụ + form liên hệ giữ nguyên, KHÔNG đụng tới** trong đợt build CMS này (mục VI).

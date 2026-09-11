@@ -211,36 +211,38 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- NEWS:START - vùng này do tools/build.js tự sinh lại mỗi lần build (1 bộ 3 URL vi/jp/en
   <url>
-    <loc>https://miraihrvietnam.com/tin-tuc/263</loc>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <lastmod>2026-09-10</lastmod>
+    <loc>https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://miraihrvietnam.com/jp/news/263</loc>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <lastmod>2026-09-10</lastmod>
+    <loc>https://miraihrvietnam.com/jp/news/part-7-tokutei-gino</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://miraihrvietnam.com/en/news/263</loc>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/263" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/263" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/263" />
-    <lastmod>2026-09-10</lastmod>
+    <loc>https://miraihrvietnam.com/en/news/part-7-tokutei-gino</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://miraihrvietnam.com/jp/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://miraihrvietnam.com/en/news/part-7-tokutei-gino" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://miraihrvietnam.com/tin-tuc/ky-7-tokutei-gino" />
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+<!-- NEWS:END -->
   <url>
     <loc>https://miraihrvietnam.com/lien-he</loc>
     <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/lien-he" />

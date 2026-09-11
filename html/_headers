@@ -1,0 +1,20 @@
+# LƯU Ý: Cloudflare CỘNG DỒN mọi quy tắc khớp, không ưu tiên cái cụ thể hơn.
+# Vì vậy KHÔNG dùng /* ở đây - nó sẽ chèn no-cache vào cả /assets/* và /vendor/*.
+
+# Trang quản trị: KHÔNG khai Disallow trong robots.txt (tự lộ đường dẫn - xem
+# static-site-build.md mục 6b), chặn bot bằng header này thay vào đó (mạnh hơn thẻ <meta> vì
+# không phụ thuộc bot có parse HTML hay không, phủ luôn mọi file con).
+/admin/*
+  Cache-Control: public, no-cache
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+
+# Ảnh: cache 1 năm. Khi thay ảnh phải ĐỔI TÊN FILE (CMS tự làm vậy khi upload lại), nếu không
+# trình duyệt cũ vẫn dùng bản cache.
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# TinyMCE tự host (dùng bởi gas/js.html khi nhúng /admin/ - CDN bị chặn trong iframe sandbox của
+# script.google.com, xem GAS.md). Cache dài vì bản đóng gói cố định theo thư mục, nâng cấp
+# version thì thay cả thư mục html/vendor/tinymce/, không ghi đè lẻ từng file.
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable

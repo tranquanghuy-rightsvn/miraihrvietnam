@@ -1,0 +1,44 @@
+name: Build html from data
+
+# Chỉ chạy khi 1 trong 2 file "chốt" đổi (luôn là commit CUỐI CÙNG của 1 thao tác Lưu/Xoá từ
+# CMS - xem GAS.md mục VIII). KHÔNG watch cả "data/**" để tránh build ở commit dở dang (ảnh/
+# post.json đã push nhưng index chưa) - xem static-site-build.md mục 5 / gotcha #2.
+on:
+  push:
+    branches: [master]
+    paths:
+      - "data/news/posts.json"
+      - "data/news/categories.json"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-html
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build
+        run: node tools/build.js
+
+      - name: Commit html/ nếu có thay đổi
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- html/; then
+            echo "Không có thay đổi trong html/ — bỏ qua commit."
+            exit 0
+          fi
+          git add html/
+          git commit -m "CI: build html from data"
+          git push

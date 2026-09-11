@@ -1,0 +1,6 @@
+# CMS backend (Google Apps Script) - deploy bằng clasp, KHÔNG qua git.
+# Chứa logic phân quyền/cấu trúc Sheet - không muốn lộ ra repo. Xem GAS.md.
+gas/
+
+.DS_Store
+node_modules/
