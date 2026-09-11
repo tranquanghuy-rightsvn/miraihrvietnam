@@ -12,5 +12,61 @@
     "excerptEn": "What is Specified Skilled Worker (Tokutei Ginō), and why is it a new gateway for Vietnamese talent looking to work in Japan? MIRAI VIET NAM shares an overview.",
     "excerptJp": "特定技能（Tokutei Ginō）とは何か、そしてなぜ日本で働きたいベトナム人材にとって新たな扉となるのか。MIRAI VIET NAMが全体像をご紹介します。",
     "updatedAt": "2026-09-11T00:00:00Z"
+  },
+  {
+    "slugVi": "nganh-nghe-tuyen-dung-tai-nhat-2026",
+    "slugIntl": "japan-recruitment-trends-2026",
+    "cat": "tin-tuyen-dung-tai-nhat-ban",
+    "titleVi": "5 nhóm ngành tại Nhật Bản đang cần tuyển lao động Việt Nam nhiều nhất",
+    "titleEn": "5 Industries in Japan With the Highest Demand for Vietnamese Workers",
+    "titleJp": "ベトナム人材の求人が最も多い日本の5業種",
+    "date": "2026-09-12",
+    "img": "news/thumb-2.jpg",
+    "excerptVi": "Sản xuất, xây dựng, điều dưỡng, chế biến thực phẩm và IT là những nhóm ngành đang mở rộng tuyển dụng lao động Việt Nam tại Nhật Bản. MIRAI VIET NAM điểm qua nhu cầu thực tế và mức đãi ngộ tham khảo.",
+    "excerptEn": "Manufacturing, construction, caregiving, food processing, and IT are the industries expanding recruitment of Vietnamese workers in Japan. MIRAI VIET NAM shares real demand trends and reference compensation.",
+    "excerptJp": "製造業、建設業、介護、食品加工、ITは、日本でベトナム人材の採用を拡大している業種です。MIRAI VIET NAMが実際の需要動向と給与目安をご紹介します。",
+    "updatedAt": "2026-09-11T17:22:14.984Z"
+  },
+  {
+    "slugVi": "thi-truong-lao-dong-viet-nhat-2026",
+    "slugIntl": "vietnam-japan-labor-market-2026",
+    "cat": "thi-truong-lao-dong-nhat-viet",
+    "titleVi": "Thị trường lao động Việt - Nhật năm 2026: Cung tăng nhưng vẫn lệch pha với nhu cầu",
+    "titleEn": "Vietnam-Japan Labor Market in 2026: Supply Is Growing, But Still Out of Sync With Demand",
+    "titleJp": "2026年のベトナム・日本労働市場：供給は増加も需要とのギャップは依然残る",
+    "date": "2026-09-10",
+    "img": "news/thumb-3.jpg",
+    "excerptVi": "Số lượng lao động Việt Nam sang Nhật Bản làm việc tiếp tục tăng, nhưng khoảng cách giữa kỹ năng ứng viên và yêu cầu thực tế của doanh nghiệp Nhật vẫn là bài toán chưa có lời giải trọn vẹn.",
+    "excerptEn": "The number of Vietnamese workers going to Japan keeps growing, but the gap between candidates' skills and what Japanese companies actually need remains an unsolved challenge.",
+    "excerptJp": "日本で働くベトナム人材の数は増加を続けていますが、候補者のスキルと日本企業が実際に求める水準とのギャップは、依然として解決されていない課題です。",
+    "updatedAt": "2026-09-11T17:22:14.984Z"
+  },
+  {
+    "slugVi": "doanh-nghiep-nhat-dau-tu-viet-nam-2026",
+    "slugIntl": "japanese-investment-in-vietnam-2026",
+    "cat": "dau-tu-kinh-doanh-tai-viet-nam",
+    "titleVi": "Vì sao doanh nghiệp Nhật Bản tiếp tục chọn Việt Nam là điểm đến đầu tư năm 2026",
+    "titleEn": "Why Japanese Companies Keep Choosing Vietnam as an Investment Destination in 2026",
+    "titleJp": "なぜ日本企業は2026年もベトナムを投資先に選び続けるのか",
+    "date": "2026-09-08",
+    "img": "news/thumb-4.jpg",
+    "excerptVi": "Chi phí vận hành cạnh tranh, lực lượng lao động trẻ và vị trí chiến lược trong chuỗi cung ứng khu vực đang giúp Việt Nam duy trì sức hút với doanh nghiệp Nhật Bản.",
+    "excerptEn": "Competitive operating costs, a young workforce, and a strategic position in the regional supply chain continue to make Vietnam attractive to Japanese businesses.",
+    "excerptJp": "競争力のある運営コスト、若い労働力、そして地域サプライチェーンにおける戦略的な立地が、日本企業にとってベトナムの魅力であり続けています。",
+    "updatedAt": "2026-09-11T17:22:14.984Z"
+  },
+  {
+    "slugVi": "ket-noi-thuong-mai-viet-nhat",
+    "slugIntl": "vietnam-japan-trade-connections",
+    "cat": "ket-noi-thuong-mai-viet-nhat",
+    "titleVi": "Kết nối thương mại Việt - Nhật: Làm sao để hai doanh nghiệp tìm đúng đối tác?",
+    "titleEn": "Vietnam-Japan Trade Connections: How Can Businesses on Both Sides Find the Right Partner?",
+    "titleJp": "日越ビジネス連携：両国企業が正しいパートナーを見つけるには？",
+    "date": "2026-09-05",
+    "img": "news/thumb-6.jpg",
+    "excerptVi": "Rào cản ngôn ngữ, khác biệt văn hóa kinh doanh và thiếu kênh kết nối đáng tin cậy là những lý do khiến nhiều doanh nghiệp Việt Nam và Nhật Bản bỏ lỡ cơ hội hợp tác dù nhu cầu hai bên đều có.",
+    "excerptEn": "Language barriers, differences in business culture, and a lack of reliable connection channels are why many Vietnamese and Japanese companies miss out on cooperation opportunities, even when demand exists on both sides.",
+    "excerptJp": "言語の壁、ビジネス文化の違い、そして信頼できる連携チャネルの不足が、双方にニーズがあるにもかかわらず、多くのベトナム・日本企業が協業の機会を逃してしまう理由です。",
+    "updatedAt": "2026-09-11T17:22:14.984Z"
   }
 ]

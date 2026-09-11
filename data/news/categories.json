@@ -5,5 +5,33 @@
     "nameVi": "Visa / Tokutei Ginō",
     "nameEn": "Visa / Tokutei Ginō",
     "nameJp": "ビザ／特定技能（Tokutei Ginō）"
+  },
+  {
+    "slugVi": "tin-tuyen-dung-tai-nhat-ban",
+    "slugIntl": "recruitment-news-in-japan",
+    "nameVi": "Tin tuyển dụng tại Nhật Bản",
+    "nameEn": "Recruitment News in Japan",
+    "nameJp": "日本の求人情報"
+  },
+  {
+    "slugVi": "thi-truong-lao-dong-nhat-viet",
+    "slugIntl": "japan-vietnam-labor-market",
+    "nameVi": "Thị trường lao động Nhật - Việt",
+    "nameEn": "Japan-Vietnam Labor Market",
+    "nameJp": "日越労働市場"
+  },
+  {
+    "slugVi": "dau-tu-kinh-doanh-tai-viet-nam",
+    "slugIntl": "investment-business-in-vietnam",
+    "nameVi": "Đầu tư & kinh doanh tại Việt Nam",
+    "nameEn": "Investment & Business in Vietnam",
+    "nameJp": "ベトナムでの投資・ビジネス"
+  },
+  {
+    "slugVi": "ket-noi-thuong-mai-viet-nhat",
+    "slugIntl": "vietnam-japan-trade-connections",
+    "nameVi": "Kết nối thương mại Việt - Nhật",
+    "nameEn": "Vietnam-Japan Trade Connections",
+    "nameJp": "日越ビジネス連携"
   }
 ]
