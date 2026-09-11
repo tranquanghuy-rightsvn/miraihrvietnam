@@ -132,17 +132,17 @@ IV. Đối với "danh mục tin tức" — full CRUD, tách hẳn khỏi bài v
      mới.
   2. Field: `nameVi`, `nameEn`, `nameJp` (sửa được tự do sau khi tạo — KHÔNG bất biến, khác slug).
      `slugVi` = slugify(`nameVi`), `slugIntl` = slugify(`nameEn`) — tính 1 LẦN lúc tạo, bất biến
-     sau đó (quyết định URL — dự án này CHƯA có trang danh mục riêng, xem mục IV.4, nhưng vẫn
-     khoá bất biến ngay từ đầu để không phải xử lý rename phức tạp nếu sau này thêm trang đó).
+     sau đó (quyết định URL công khai của trang danh mục — xem mục IV.4).
   3. Danh sách tải từ `data/news/categories.json` qua GitHub Contents API mỗi lần mở.
-  4. **KHÔNG có trang danh mục công khai riêng** (`/tin-tuc/danh-muc/<slug>/`) trong phạm vi lần
-     này — khác toponevn. Danh mục hiện tại chỉ dùng để: (a) gắn nhãn/lọc bài viết trong Admin,
-     (b) hiển thị tên danh mục trên thẻ `article-meta__tag` của trang chi tiết bài viết, (c) liệt
-     kê TOÀN BỘ danh mục hiện có trong khối sidebar "Danh mục"/"Categories"/"カテゴリー" của trang
-     chi tiết VÀ trang danh sách tin tức — mỗi mục trỏ về trang danh sách tin tức chung
-     (`/tin-tuc`, `/en/news`, `/jp/news`), KHÔNG lọc theo danh mục (vì chưa có trang lọc). Đây là
-     thay thế cho danh sách 5 mục TĨNH (không có dữ liệu thật phía sau) vốn có sẵn trong bản clone
-     gốc. Nếu sau này cần trang lọc theo danh mục thật, đó là tính năng thêm mới cần hỏi lại.
+  4. **CÓ trang danh mục công khai riêng** — chốt lại 13/09/2026 (đảo ngược quyết định ban đầu
+     "không có trang lọc", sau phản hồi thật: khách bấm vào mục "Danh mục" ở sidebar mà không đi
+     đâu cả). URL: `/tin-tuc/danh-muc/<slugVi>/` (Vi), `/en/news/category/<slugIntl>/` (En),
+     `/jp/news/category/<slugIntl>/` (Jp) — build.js tự sinh (mục "Trang danh mục" trong
+     `tools/build.js`), TÁI SỬ DỤNG đúng template + hàm render thẻ tin tức/phân trang của trang
+     danh sách chung, chỉ khác: lọc đúng bài viết có `cat` = danh mục đó, breadcrumb 3 cấp
+     (`Trang chủ > Tin tức > <Tên danh mục>`), `<title>`/H1 theo tên danh mục. Khối sidebar
+     "Danh mục"/"Categories"/"カテゴリー" (ở CẢ trang chi tiết lẫn trang danh sách) giờ trỏ THẲNG
+     vào đúng trang danh mục tương ứng thay vì trang danh sách tin tức chung.
 
 V. Đối với sửa/xoá tin tức & danh mục:
    - Sửa: slug bất biến (mục III/IV.2) — disable input khi mở bản ghi ĐÃ TỒN TẠI, bật lại khi mở
@@ -250,6 +250,10 @@ X. Script Properties (Project Settings > Script Properties trên script.google.c
   tay từ trước khi có CMS — CHẤT LƯỢNG TỐT HƠN dịch máy, nên KHÔNG chạy lại `translatePost` cho
   bài này). Danh mục "Visa / Tokutei Ginō" (Vi/En) / "ビザ／特定技能（Tokutei Ginō）" (Jp) tạo kèm
   làm danh mục CMS đầu tiên (`slugVi`: `visa-tokutei-gino`, `slugIntl`: `visa-tokutei-gino`).
-  5 mục danh mục tĩnh khác từng thấy ở sidebar bản clone gốc (không có dữ liệu bài viết thật phía
-  sau, chỉ là placeholder) **KHÔNG được tạo lại** — xem mục IV.4.
+  4 mục danh mục tĩnh khác từng thấy ở sidebar bản clone gốc (không có dữ liệu bài viết thật phía
+  sau, chỉ là placeholder) — **chốt lại 13/09/2026**: đã tạo thành danh mục CMS thật + kèm 4 bài
+  viết mẫu (nội dung do Claude viết, dịch tay 3 ngôn ngữ, không qua `translatePost`), đúng tên đã
+  có sẵn trong bản clone gốc (`Tin tuyển dụng tại Nhật Bản`, `Thị trường lao động Nhật - Việt`,
+  `Đầu tư & kinh doanh tại Việt Nam`, `Kết nối thương mại Việt - Nhật`) — không tự bịa danh mục
+  nào khác ngoài 5 mục design gốc đã có tên sẵn (bao gồm cả `Visa / Tokutei Ginō`).
 - **6 trang dịch vụ + form liên hệ giữ nguyên, KHÔNG đụng tới** trong đợt build CMS này (mục VI).

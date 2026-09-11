@@ -7,10 +7,13 @@
  *   data/news/categories.json, data/news/posts.json, data/news/<slugVi>/post.json
  *   templates/news-detail-{vi,en,jp}.html, templates/news-list-{vi,en,jp}.html
  * Ghi:
- *   html/tin-tuc/<slugVi>/index.html            (+ html/tin-tuc/index.html)
- *   html/en/news/<slugIntl>/index.html           (+ html/en/news/index.html)
- *   html/jp/news/<slugIntl>/index.html           (+ html/jp/news/index.html)
- * Dọn: thư mục con mồ côi (bài đã xoá khỏi data/ nhưng thư mục .html cũ vẫn còn) - xem
+ *   html/tin-tuc/<slugVi>/index.html                  (+ html/tin-tuc/index.html)
+ *   html/en/news/<slugIntl>/index.html                 (+ html/en/news/index.html)
+ *   html/jp/news/<slugIntl>/index.html                 (+ html/jp/news/index.html)
+ *   html/tin-tuc/danh-muc/<catSlugVi>/index.html       (trang danh mục, lọc theo cat)
+ *   html/en/news/category/<catSlugIntl>/index.html
+ *   html/jp/news/category/<catSlugIntl>/index.html
+ * Dọn: thư mục con mồ côi (bài/danh mục đã xoá khỏi data/ nhưng thư mục .html cũ vẫn còn) - xem
  * static-site-build.md mục 8.
  *
  * Chạy: node tools/build.js
@@ -92,25 +95,40 @@ const sortedMetas = postsIndex
   .slice()
   .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
+// ================= Đường dẫn trang danh mục =================
+// GAS.md mục IV.4 (chốt lại 13/09/2026 - trước đó CHƯA có trang lọc riêng, khách phản hồi cần
+// bấm được vào danh mục): mỗi danh mục có 1 trang liệt kê RIÊNG (lọc đúng bài thuộc danh mục
+// đó), URL theo slug riêng từng ngôn ngữ (Vi dùng slugVi, En/Jp dùng CHUNG slugIntl - đúng quy
+// ước slug bài viết, GAS.md mục II.2).
+
+function catPathVi(cat) {
+  return `/tin-tuc/danh-muc/${cat.slugVi}`;
+}
+function catPathEn(cat) {
+  return `/en/news/category/${cat.slugIntl}`;
+}
+function catPathJp(cat) {
+  return `/jp/news/category/${cat.slugIntl}`;
+}
+
 // ================= Sidebar "Danh mục"/"Categories"/"カテゴリー" =================
-// Liệt kê TOÀN BỘ danh mục hiện có, mỗi mục trỏ về trang danh sách tin tức chung (KHÔNG lọc
-// theo danh mục - dự án này chưa có trang lọc riêng, xem GAS.md mục IV.4).
+// Liệt kê TOÀN BỘ danh mục hiện có, mỗi mục trỏ THẲNG vào trang danh mục tương ứng.
 
 function renderCatListVi() {
   return categories
-    .map((c) => `<li>\n                      <a href="/tin-tuc"><span>${escapeHtml(c.nameVi)}</span></a>\n                    </li>`)
+    .map((c) => `<li>\n                      <a href="${catPathVi(c)}"><span>${escapeHtml(c.nameVi)}</span></a>\n                    </li>`)
     .join("\n                    ");
 }
 function renderCatListEn() {
   return categories
-    .map((c) => `<li>\n                      <a href="/en/news"><span>${escapeHtml(c.nameEn)}</span></a>\n                    </li>`)
+    .map((c) => `<li>\n                      <a href="${catPathEn(c)}"><span>${escapeHtml(c.nameEn)}</span></a>\n                    </li>`)
     .join("\n                    ");
 }
 function renderCatListJp() {
   return categories
     .map(
       (c) =>
-        `<li>\n                      <a href="/jp/news"\n                        ><span class="hyphen"> &gt; </span\n                        ><span>${escapeHtml(c.nameJp)}</span></a\n                      >\n                    </li>`
+        `<li>\n                      <a href="${catPathJp(c)}"\n                        ><span class="hyphen"> &gt; </span\n                        ><span>${escapeHtml(c.nameJp)}</span></a\n                      >\n                    </li>`
     )
     .join("\n                    ");
 }
@@ -276,6 +294,28 @@ function renderCardJp(meta) {
                   </article>`;
 }
 
+// Breadcrumb: 2 dạng - trang danh sách chung (2 mục) và trang danh mục (3 mục, mục giữa là link
+// quay lại danh sách chung). Trả về ĐÚNG nội dung bên trong <ol class="breadcrumb container">.
+function breadcrumbMain(lang) {
+  if (lang === "vi") {
+    return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/">Trang chủ</a></li><li class="breadcrumb-item" aria-current="page">Tin tức</li>`;
+  }
+  if (lang === "en") {
+    return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/en/">Home</a></li><li class="breadcrumb-item" aria-current="page">News</li>`;
+  }
+  return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/jp/">ホーム</a></li><li class="breadcrumb-item" aria-current="page">ニュース</li>`;
+}
+function breadcrumbCategory(lang, catName) {
+  const name = escapeHtml(catName);
+  if (lang === "vi") {
+    return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/">Trang chủ</a></li><li class="breadcrumb-item"><a class="breadcrumb__link" href="/tin-tuc">Tin tức</a></li><li class="breadcrumb-item" aria-current="page">${name}</li>`;
+  }
+  if (lang === "en") {
+    return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/en/">Home</a></li><li class="breadcrumb-item"><a class="breadcrumb__link" href="/en/news">News</a></li><li class="breadcrumb-item" aria-current="page">${name}</li>`;
+  }
+  return `<li class="breadcrumb-item"><a class="breadcrumb__link" href="/jp/">ホーム</a></li><li class="breadcrumb-item"><a class="breadcrumb__link" href="/jp/news">ニュース</a></li><li class="breadcrumb-item" aria-current="page">${name}</li>`;
+}
+
 function chunk(arr, size) {
   const pages = [];
   for (let i = 0; i < arr.length; i += size) pages.push(arr.slice(i, i + size));
@@ -316,9 +356,26 @@ function renderPaginationHtml(totalPages, lang) {
 const pages = chunk(sortedMetas, PAGE_SIZE);
 const totalPages = pages.length;
 
+const MAIN_URL_VI = SITE + "/tin-tuc";
+const MAIN_URL_EN = SITE + "/en/news";
+const MAIN_URL_JP = SITE + "/jp/news";
+const MAIN_DESC_VI =
+  "Tin tức tuyển dụng tại Nhật Bản, thị trường lao động Việt - Nhật, visa và kỹ năng đặc định (Tokutei Ginō), đầu tư kinh doanh và kết nối thương mại Việt - Nhật.";
+const MAIN_DESC_EN =
+  "News on recruitment in Japan, the Vietnam-Japan labor market, visas and Specified Skilled Worker (Tokutei Ginō), business investment, and Vietnam-Japan trade connections.";
+const MAIN_DESC_JP =
+  "日本の求人情報、ベトナム・日本労働市場、ビザ・特定技能、ベトナムでの投資・ビジネス、ベトナム・日本貿易連携に関するニュースをお届けします。";
+
 writeFile(
   "tin-tuc/index.html",
   fill(LIST_TEMPLATES.vi, {
+    TITLE: "Tin tức | MIRAI VIET NAM HR CONSULTING",
+    DESC: MAIN_DESC_VI,
+    URL_VI: MAIN_URL_VI,
+    URL_EN: MAIN_URL_EN,
+    URL_JP: MAIN_URL_JP,
+    BREADCRUMB: breadcrumbMain("vi"),
+    H1: "Tin tức",
     PAGES: renderPagesHtml(pages, renderCardVi),
     PAGINATION: renderPaginationHtml(totalPages, "vi"),
     CAT_LIST: renderCatListVi(),
@@ -327,6 +384,13 @@ writeFile(
 writeFile(
   "en/news/index.html",
   fill(LIST_TEMPLATES.en, {
+    TITLE: "News | MIRAI VIET NAM HR CONSULTING",
+    DESC: MAIN_DESC_EN,
+    URL_VI: MAIN_URL_VI,
+    URL_EN: MAIN_URL_EN,
+    URL_JP: MAIN_URL_JP,
+    BREADCRUMB: breadcrumbMain("en"),
+    H1: "News",
     PAGES: renderPagesHtml(pages, renderCardEn),
     PAGINATION: renderPaginationHtml(totalPages, "en"),
     CAT_LIST: renderCatListEn(),
@@ -335,11 +399,85 @@ writeFile(
 writeFile(
   "jp/news/index.html",
   fill(LIST_TEMPLATES.jp, {
+    TITLE: "ニュース | MIRAI VIET NAM HR CONSULTING",
+    DESC: MAIN_DESC_JP,
+    URL_VI: MAIN_URL_VI,
+    URL_EN: MAIN_URL_EN,
+    URL_JP: MAIN_URL_JP,
+    BREADCRUMB: breadcrumbMain("jp"),
+    H1: "ニュース",
     PAGES: renderPagesHtml(pages, renderCardJp),
     PAGINATION: renderPaginationHtml(totalPages, "jp"),
     CAT_LIST_JP: renderCatListJp(),
   })
 );
+
+// ================= Trang danh mục (lọc theo từng danh mục, 3 ngôn ngữ) =================
+// Mỗi danh mục -> 3 trang (Vi/En/Jp), TÁI SỬ DỤNG đúng template + hàm render card/pagination
+// của trang danh sách chung ở trên - chỉ khác tập bài viết (lọc theo cat), tiêu đề, breadcrumb.
+
+const validCatDirs = { vi: new Set(), en: new Set(), jp: new Set() };
+
+categories.forEach((cat) => {
+  const catMetas = sortedMetas.filter((m) => m.cat === cat.slugVi);
+  const catPages = chunk(catMetas, PAGE_SIZE);
+  const catTotalPages = catMetas.length ? catPages.length : 0; // 0 bài -> không cần nav phân trang
+
+  const urlVi = SITE + catPathVi(cat);
+  const urlEn = SITE + catPathEn(cat);
+  const urlJp = SITE + catPathJp(cat);
+
+  writeFile(
+    `tin-tuc/danh-muc/${cat.slugVi}/index.html`,
+    fill(LIST_TEMPLATES.vi, {
+      TITLE: escapeHtml(cat.nameVi) + " | MIRAI VIET NAM HR CONSULTING",
+      DESC: escapeHtml(`Tin tức thuộc danh mục "${cat.nameVi}" từ MIRAI VIET NAM HR CONSULTING.`),
+      URL_VI: urlVi,
+      URL_EN: urlEn,
+      URL_JP: urlJp,
+      BREADCRUMB: breadcrumbCategory("vi", cat.nameVi),
+      H1: escapeHtml(cat.nameVi),
+      PAGES: renderPagesHtml(catPages, renderCardVi),
+      PAGINATION: renderPaginationHtml(catTotalPages, "vi"),
+      CAT_LIST: renderCatListVi(),
+    })
+  );
+  validCatDirs.vi.add(cat.slugVi);
+
+  writeFile(
+    `en/news/category/${cat.slugIntl}/index.html`,
+    fill(LIST_TEMPLATES.en, {
+      TITLE: escapeHtml(cat.nameEn) + " | MIRAI VIET NAM HR CONSULTING",
+      DESC: escapeHtml(`News in the "${cat.nameEn}" category from MIRAI VIET NAM HR CONSULTING.`),
+      URL_VI: urlVi,
+      URL_EN: urlEn,
+      URL_JP: urlJp,
+      BREADCRUMB: breadcrumbCategory("en", cat.nameEn),
+      H1: escapeHtml(cat.nameEn),
+      PAGES: renderPagesHtml(catPages, renderCardEn),
+      PAGINATION: renderPaginationHtml(catTotalPages, "en"),
+      CAT_LIST: renderCatListEn(),
+    })
+  );
+  validCatDirs.en.add(cat.slugIntl);
+
+  writeFile(
+    `jp/news/category/${cat.slugIntl}/index.html`,
+    fill(LIST_TEMPLATES.jp, {
+      TITLE: escapeHtml(cat.nameJp) + "｜MIRAI VIET NAM HR CONSULTING",
+      DESC: escapeHtml(`MIRAI VIET NAM HR CONSULTINGの「${cat.nameJp}」カテゴリーのニュース一覧です。`),
+      URL_VI: urlVi,
+      URL_EN: urlEn,
+      URL_JP: urlJp,
+      BREADCRUMB: breadcrumbCategory("jp", cat.nameJp),
+      H1: escapeHtml(cat.nameJp),
+      PAGES: renderPagesHtml(catPages, renderCardJp),
+      PAGINATION: renderPaginationHtml(catTotalPages, "jp"),
+      CAT_LIST_JP: renderCatListJp(),
+    })
+  );
+  validCatDirs.jp.add(cat.slugIntl);
+});
 
 // ================= Dọn thư mục bài viết mồ côi =================
 // Bài đã xoá khỏi data/news/posts.json nhưng thư mục html/tin-tuc/<slug>/, html/en/news/<slug>/,
@@ -348,10 +486,11 @@ writeFile(
 // ngoài), và CHỈ xoá thư mục con là 1 bài viết build ra (không đụng file/thư mục tĩnh khác nằm
 // cùng cấp, vd html/tin-tuc/index.html không phải thư mục nên an toàn).
 
-function pruneOrphanDirs(parentRel, validSlugs) {
+function pruneOrphanDirs(parentRel, validSlugs, ignoreNames) {
   const parent = path.join(HTML_DIR, parentRel);
   if (!fs.existsSync(parent)) return;
   for (const name of fs.readdirSync(parent)) {
+    if (ignoreNames && ignoreNames.has(name)) continue; // thư mục cố định khác (vd "danh-muc"), không phải bài viết
     const full = path.join(parent, name);
     if (!fs.statSync(full).isDirectory()) continue;
     if (validSlugs.has(name)) continue;
@@ -360,9 +499,18 @@ function pruneOrphanDirs(parentRel, validSlugs) {
   }
 }
 
-pruneOrphanDirs("tin-tuc", validPostDirs.vi);
-pruneOrphanDirs(path.join("en", "news"), validPostDirs.en);
-pruneOrphanDirs(path.join("jp", "news"), validPostDirs.jp);
+// Bài viết: quét top-level tin-tuc/, en/news/, jp/news/ - BỎ QUA thư mục "danh-muc"/"category"
+// (không phải slug bài viết, xử lý riêng ngay bên dưới).
+pruneOrphanDirs("tin-tuc", validPostDirs.vi, new Set(["danh-muc"]));
+pruneOrphanDirs(path.join("en", "news"), validPostDirs.en, new Set(["category"]));
+pruneOrphanDirs(path.join("jp", "news"), validPostDirs.jp, new Set(["category"]));
+
+// Trang danh mục: quét bên trong tin-tuc/danh-muc/, en/news/category/, jp/news/category/ - danh
+// mục đã xoá khỏi data/news/categories.json thì dọn theo (hiếm khi xảy ra vì deleteCategory ở
+// server chặn xoá nếu còn bài viết đang dùng, nhưng vẫn xử lý cho idempotent/an toàn).
+pruneOrphanDirs(path.join("tin-tuc", "danh-muc"), validCatDirs.vi);
+pruneOrphanDirs(path.join("en", "news", "category"), validCatDirs.en);
+pruneOrphanDirs(path.join("jp", "news", "category"), validCatDirs.jp);
 
 // ================= Trang chủ: vá tại chỗ khối "Tin tức mới nhất" =================
 // Trang chủ (html/index.html + html/en/index.html + html/jp/index.html) là file TĨNH, sửa tay
@@ -449,7 +597,7 @@ function updateSitemap() {
     console.warn("[build] Không tìm thấy neo NEWS:START/NEWS:END trong sitemap.xml - bỏ qua.");
     return;
   }
-  const blocks = sortedMetas.map((meta) => {
+  const postBlocks = sortedMetas.map((meta) => {
     const urlVi = `${SITE}/tin-tuc/${meta.slugVi}`;
     const urlEn = `${SITE}/en/news/${meta.slugIntl}`;
     const urlJp = `${SITE}/jp/news/${meta.slugIntl}`;
@@ -460,6 +608,18 @@ function updateSitemap() {
       sitemapUrlBlock(urlEn, urlVi, urlJp, urlEn, urlVi, lastmod),
     ].join("\n");
   });
+  const today = new Date().toISOString().slice(0, 10);
+  const catBlocks = categories.map((cat) => {
+    const urlVi = SITE + catPathVi(cat);
+    const urlEn = SITE + catPathEn(cat);
+    const urlJp = SITE + catPathJp(cat);
+    return [
+      sitemapUrlBlock(urlVi, urlVi, urlJp, urlEn, urlVi, today),
+      sitemapUrlBlock(urlJp, urlVi, urlJp, urlEn, urlVi, today),
+      sitemapUrlBlock(urlEn, urlVi, urlJp, urlEn, urlVi, today),
+    ].join("\n");
+  });
+  const blocks = postBlocks.concat(catBlocks);
   // Tìm điểm chèn: ngay sau dòng chứa startTag (giữ nguyên comment neo mở), tới ngay trước endTag.
   const afterStartLine = raw.indexOf("\n", startIdx) + 1;
   const newContent = raw.slice(0, afterStartLine) + (blocks.length ? blocks.join("\n") + "\n" : "") + raw.slice(endIdx);
