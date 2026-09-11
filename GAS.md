@@ -30,12 +30,19 @@ I. Đối với tính năng đăng nhập (giống hệt mặc định playbook,
   6. Server luôn tự kiểm tra quyền ở MỌI hành động (`requireRole_`).
 
 II. Đối với "tin tức" (bài viết) — full CRUD, 3 NGÔN NGỮ:
-  1. Luồng nhập liệu: người viết nhập ĐẦY ĐỦ bản tiếng Việt trước (tiêu đề, mô tả ngắn, nội
-     dung), bấm nút "Dịch sang English + 日本語" (gọi `translatePost`, dùng `LanguageApp.translate`
-     — dịch máy miễn phí, xem mục 0b) để tự động điền bản En/Jp, sau đó có thể tự sửa lại bản
-     En/Jp trước khi Lưu (KHÔNG bắt buộc dịch lại mỗi lần sửa — dịch chỉ là gợi ý điền sẵn, người
-     dùng toàn quyền ghi đè). Cả 3 bản (Vi/En/Jp) lưu chung 1 lần bấm "Lưu bài viết", gửi lên
-     server trong CÙNG 1 lời gọi `savePost`.
+  1. Luồng nhập liệu: người viết nhập bản tiếng Việt trước (tiêu đề, mô tả ngắn, nội dung). Mỗi
+     bản En/Jp có 1 nút "Dịch" RIÊNG ("🌐 Dịch sang English" đặt ngay trước khối English, "🌐 Dịch
+     sang 日本語" đặt ngay trước khối 日本語) — bấm nút nào CHỈ dịch + điền sẵn đúng khối ngôn ngữ đó
+     (gọi `translatePost(..., target: 'en'|'ja')`, dùng `LanguageApp.translate` — dịch máy miễn
+     phí, xem mục II-b), KHÔNG đụng tới khối ngôn ngữ còn lại. **Chốt lại 12/09/2026** (khác thiết
+     kế ban đầu "1 nút dịch gộp cả 2"): bắt buộc tách riêng vì người dùng có thể đã tự sửa tay bản
+     English theo văn phong riêng, sau đó cần dịch (hoặc dịch lại) bản 日本語 — nếu dùng 1 nút gộp,
+     thao tác này sẽ VÔ TÌNH GHI ĐÈ MẤT bản English đã tự sửa. Có thể bấm nút dịch của 1 ngôn ngữ
+     bất kỳ lúc nào (kể cả nhiều lần, kể cả khi đang SỬA bài đã có sẵn nội dung custom) — mỗi lần
+     bấm chỉ là "điền sẵn cho nhanh", người dùng toàn quyền sửa lại/ghi đè kết quả trước khi Lưu,
+     và việc bấm hay không bấm nút dịch không bắt buộc — không bấm thì tự gõ hoàn toàn theo ý
+     mình. Cả 3 bản (Vi/En/Jp) lưu chung 1 lần bấm "Lưu bài viết", gửi lên server trong CÙNG 1 lời
+     gọi `savePost` (nút Dịch không tự lưu gì).
   2. Các field CÓ ô nhập (nhân 3 cho mỗi ngôn ngữ, trừ field dùng chung ghi rõ bên dưới):
      - Tiêu đề: `titleVi`, `titleEn`, `titleJp` — BẮT BUỘC cả 3 (không cho Lưu nếu thiếu bất kỳ
        bản nào, tránh xuất bản trang thiếu nội dung ở 1 ngôn ngữ).
@@ -86,11 +93,14 @@ II. Đối với "tin tức" (bài viết) — full CRUD, 3 NGÔN NGỮ:
 
 II-b. Dịch tự động (Vi -> En/Jp) — CHỐT DÙNG `LanguageApp.translate()` (miễn phí, có sẵn trong
    Apps Script, nền Google Translate):
-   - Hàm `translatePost(token, {titleVi, excerptVi, contentVi})` trả về
-     `{titleEn, excerptEn, contentEn, titleJp, excerptJp, contentJp}`.
+   - Hàm `translatePost(token, {titleVi, excerptVi, contentVi, target})` — `target` là `"en"` HOẶC
+     `"ja"`, dịch ĐÚNG 1 NGÔN NGỮ MỖI LẦN GỌI (chốt lại 12/09/2026, xem lý do ở mục II.1), trả về
+     `{title, excerpt, content}` của riêng ngôn ngữ đó (KHÔNG trả cả 2 ngôn ngữ cùng lúc như thiết
+     kế ban đầu). Ảnh chèn trong `content` (thẻ `<img>`) LUÔN được giữ NGUYÊN VẸN qua bản dịch —
+     xem dòng kế tiếp, tách riêng thẻ HTML khỏi đoạn text nên `<img>` không bao giờ bị đụng vào.
    - `titleVi`/`excerptVi` dịch thẳng (plain text). `contentVi` (HTML) dịch bằng cách TÁCH riêng
      thẻ HTML và đoạn text (regex split theo `<[^>]+>`), CHỈ dịch phần text, giữ nguyên mọi thẻ —
-     tránh dịch máy làm hỏng cấu trúc HTML (thẻ `<figure>`, `<strong>`...).
+     tránh dịch máy làm hỏng cấu trúc HTML (thẻ `<figure>`, `<strong>`, và đặc biệt `<img>`...).
    - Ngôn ngữ đích cho "Nhật" dùng mã `ja` khi gọi `LanguageApp.translate` (ISO 639-1 thật của
      tiếng Nhật) — KHÔNG nhầm với tiền tố thư mục site `/jp/` (2 thứ khác nhau, `jp` chỉ là tên
      thư mục quy ước của site, không phải mã ngôn ngữ).
@@ -116,8 +126,10 @@ III. Đối với sửa tin tức:
      sang file mới. Xoá HẲN bài viết thì xoá kèm đúng ảnh cover hiện tại (an toàn, 1-1).
 
 IV. Đối với "danh mục tin tức" — full CRUD, tách hẳn khỏi bài viết, 3 NGÔN NGỮ:
-  1. Luồng nhập liệu giống bài viết: nhập `nameVi` trước, bấm "Dịch" (`translateCategory`) để tự
-     điền `nameEn`/`nameJp`, có thể sửa lại trước khi Lưu. Cả 3 tên BẮT BUỘC khi tạo mới.
+  1. Luồng nhập liệu giống bài viết (mục II.1): nhập `nameVi` trước, mỗi bản En/Jp có nút "Dịch"
+     RIÊNG (`translateCategory(..., target: 'en'|'ja')`) — dịch đúng 1 ngôn ngữ mỗi lần bấm, không
+     ghi đè tên ngôn ngữ còn lại. Có thể sửa lại kết quả trước khi Lưu. Cả 3 tên BẮT BUỘC khi tạo
+     mới.
   2. Field: `nameVi`, `nameEn`, `nameJp` (sửa được tự do sau khi tạo — KHÔNG bất biến, khác slug).
      `slugVi` = slugify(`nameVi`), `slugIntl` = slugify(`nameEn`) — tính 1 LẦN lúc tạo, bất biến
      sau đó (quyết định URL — dự án này CHƯA có trang danh mục riêng, xem mục IV.4, nhưng vẫn
@@ -178,7 +190,25 @@ VIII. Kiến trúc lưu trữ (nơi gì nằm ở đâu, ai đọc/ghi):
      commit `html/` + Cloudflare Pages tự deploy commit mới).
 
 IX. Checklist bug đã thực sự gặp ở dự án này (cập nhật dần trong lúc code):
-   - (chưa phát sinh — dự án mới dựng lần đầu 11/09/2026, ghi bổ sung khi gặp thật).
+   - **Ảnh CHÈN TRONG NỘI DUNG bài viết không đọc được khi mở sửa trong Admin** (báo lỗi thật
+     12/09/2026, Đại ca test). Nguyên nhân: nội dung lưu ảnh bằng đường dẫn TƯƠNG ĐỐI
+     `/assets/images/<file>` (đúng quy ước để site thật `miraihrvietnam.com` hiển thị được bình
+     thường), nhưng trang Admin/TinyMCE chạy trong iframe origin KHÁC hẳn
+     (`*.googleusercontent.com` của Apps Script) — đường dẫn tương đối đó trỏ NHẦM sang chính
+     origin iframe, ảnh 404 ngay trong lúc soạn (dù vẫn hiển thị đúng trên site thật, nên rất dễ
+     nhầm tưởng "dữ liệu bị hỏng"). Đây đúng là biến thể của gotcha đã biết trong
+     `gas-backend-patterns.md` mục 11 ("ảnh phải xem được khi sửa"), nhưng áp dụng cho MỌI ảnh
+     chèn trong content (kể cả ảnh mới upload qua CMS), không chỉ ảnh migrate/legacy như mô tả
+     gốc — vì quy ước của dự án này lưu content với đường dẫn tương đối tuyệt đối theo domain
+     (mục II.2), khác quy ước "ảnh cover" (chỉ lưu tên file, build.js tự ghép tiền tố).
+     Vá: 2 hàm đảo ngược `contentImgToAbsolute_`/`contentImgToRelative_` (`gas/js.html`) - đổi
+     sang URL tuyệt đối `raw.githubusercontent.com` CHỈ để hiển thị trong editor (gọi ngay trước
+     `setContent()` lúc mở bài sửa), rồi đổi NGƯỢC LẠI về đường dẫn tương đối CHỈ trước khi lưu
+     (gọi ngay trước khi đọc `getContent()` để gửi lên server) - dữ liệu trong
+     `data/news/*.json`/site thật KHÔNG BAO GIỜ chứa domain raw.githubusercontent.com. Đồng thời
+     sửa luôn `insertQuickImage_` (ảnh chèn mới) đổi sang URL tuyệt đối ngay sau khi upload xong
+     thay vì đường dẫn tương đối như trước — cùng 1 bug, chỉ là lộ ra ngay sau lần chèn đầu tiên
+     thay vì phải mở lại bài mới thấy. Bump `CLIENT_BUILD` lên `2026-09-11-b`.
 
 X. Script Properties (Project Settings > Script Properties trên script.google.com):
    - `GITHUB_TOKEN` — Fine-grained PAT, chỉ quyền Contents: Read and write, giới hạn đúng repo
