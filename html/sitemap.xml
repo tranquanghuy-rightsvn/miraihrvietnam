@@ -211,7 +211,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- NEWS:START - vùng này do tools/build.js tự sinh lại mỗi lần build (1 bộ 3 URL vi/jp/en
   <url>
     <loc>https://miraihrvietnam.com/tin-tuc/lam-sao-de-deal-luong-khi-phong-van-voi-cong-ty-nhat</loc>
     <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/tin-tuc/lam-sao-de-deal-luong-khi-phong-van-voi-cong-ty-nhat" />
@@ -542,7 +541,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-<!-- NEWS:END -->
   <url>
     <loc>https://miraihrvietnam.com/lien-he</loc>
     <xhtml:link rel="alternate" hreflang="vi" href="https://miraihrvietnam.com/lien-he" />

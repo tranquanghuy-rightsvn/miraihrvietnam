@@ -564,10 +564,10 @@ patchHomeNews("index.html", homeCardVi);
 patchHomeNews(path.join("en", "index.html"), homeCardEn);
 patchHomeNews(path.join("jp", "index.html"), homeCardJp);
 
-// ================= sitemap.xml: vá tại chỗ vùng NEWS:START..NEWS:END =================
+// ================= sitemap.xml: vá tại chỗ các <url> tin tức =================
 // Phần còn lại của sitemap.xml (trang chủ, dịch vụ, việc làm...) do NGƯỜI sửa tay - build.js
-// CHỈ ghi đè đúng khối 3 URL vi/jp/en của mỗi bài viết, đánh dấu bằng 2 comment neo (xem
-// architecture.md mục "vì sao trang chủ không dùng template" - cùng kỹ thuật "vá tại chỗ").
+// CHỈ ghi đè các <url> có <loc> dạng /tin-tuc/*, /en/news/*, /jp/news/* (bài viết + danh mục).
+// Trang danh sách /tin-tuc, /en/news, /jp/news vẫn do người sửa tay.
 
 function sitemapUrlBlock(loc, altVi, altJa, altEn, altDefault, lastmod) {
   return `  <url>
@@ -588,15 +588,7 @@ function updateSitemap() {
     console.warn("[build] Không thấy html/sitemap.xml - bỏ qua bước cập nhật sitemap.");
     return;
   }
-  const startTag = "<!-- NEWS:START";
-  const endTag = "<!-- NEWS:END -->";
   const raw = fs.readFileSync(sitemapPath, "utf8");
-  const startIdx = raw.indexOf(startTag);
-  const endIdx = raw.indexOf(endTag);
-  if (startIdx === -1 || endIdx === -1) {
-    console.warn("[build] Không tìm thấy neo NEWS:START/NEWS:END trong sitemap.xml - bỏ qua.");
-    return;
-  }
   const postBlocks = sortedMetas.map((meta) => {
     const urlVi = `${SITE}/tin-tuc/${meta.slugVi}`;
     const urlEn = `${SITE}/en/news/${meta.slugIntl}`;
@@ -620,9 +612,31 @@ function updateSitemap() {
     ].join("\n");
   });
   const blocks = postBlocks.concat(catBlocks);
-  // Tìm điểm chèn: ngay sau dòng chứa startTag (giữ nguyên comment neo mở), tới ngay trước endTag.
-  const afterStartLine = raw.indexOf("\n", startIdx) + 1;
-  const newContent = raw.slice(0, afterStartLine) + (blocks.length ? blocks.join("\n") + "\n" : "") + raw.slice(endIdx);
+
+  // Không dùng comment neo: nhận diện <url> do build sinh qua <loc> (bài viết + trang danh mục),
+  // bỏ hết rồi chèn lại bộ mới ngay sau <url> của trang danh sách tin tức (/en/news).
+  const generatedLoc = new RegExp(`^${SITE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/(tin-tuc|en/news|jp/news)/.+`);
+  const urlBlockRe = /[ \t]*<url>[\s\S]*?<\/url>\r?\n?/g;
+  const listingLoc = `${SITE}/en/news`;
+  let insertAt = -1;
+  let kept = "";
+  let last = 0;
+  for (const m of raw.matchAll(urlBlockRe)) {
+    kept += raw.slice(last, m.index);
+    last = m.index + m[0].length;
+    const loc = (m[0].match(/<loc>([^<]*)<\/loc>/) || [])[1] || "";
+    if (generatedLoc.test(loc)) continue;
+    kept += m[0];
+    if (loc === listingLoc) insertAt = kept.length;
+  }
+  kept += raw.slice(last);
+  if (insertAt === -1) insertAt = kept.indexOf("</urlset>");
+  if (insertAt === -1) {
+    console.warn("[build] sitemap.xml không có </urlset> - bỏ qua bước cập nhật sitemap.");
+    return;
+  }
+  const generated = blocks.length ? blocks.join("\n") + "\n" : "";
+  const newContent = kept.slice(0, insertAt) + generated + kept.slice(insertAt);
   fs.writeFileSync(sitemapPath, newContent);
 }
 

@@ -20,8 +20,9 @@ Chạy lại nhiều lần liên tiếp phải **idempotent** — không tự si
   - `html/tin-tuc/<slugVi>/index.html` + `html/tin-tuc/index.html` (danh sách, có phân trang).
   - `html/en/news/<slugIntl>/index.html` + `html/en/news/index.html`.
   - `html/jp/news/<slugIntl>/index.html` + `html/jp/news/index.html`.
-  - Vá tại chỗ vùng `<!-- NEWS:START -->...<!-- NEWS:END -->` trong `html/sitemap.xml` (phần còn
-    lại của sitemap là do người sửa tay, build.js không đụng tới).
+  - Vá tại chỗ `html/sitemap.xml`: thay toàn bộ `<url>` có `<loc>` dạng `/tin-tuc/*`, `/en/news/*`,
+    `/jp/news/*` (bài viết + danh mục), chèn ngay sau `<url>` của `/en/news`. Sitemap không dùng
+    comment; phần còn lại do người sửa tay, build.js không đụng tới.
 - Dọn: thư mục bài viết mồ côi trong `html/tin-tuc/`, `html/en/news/`, `html/jp/news/` (bài đã
   xoá khỏi `data/news/posts.json` nhưng thư mục `.html` build từ lần trước vẫn còn).
 
