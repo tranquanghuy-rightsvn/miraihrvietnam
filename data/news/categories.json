@@ -33,5 +33,12 @@
     "nameVi": "Kết nối thương mại Việt - Nhật",
     "nameEn": "Vietnam-Japan Trade Connections",
     "nameJp": "日越ビジネス連携"
+  },
+  {
+    "slugVi": "thong-tin-tuyen-dung-tai-viet-nam",
+    "slugIntl": "recruitment-information-in-vietnam",
+    "nameVi": "Thông tin tuyển dụng tại Việt Nam",
+    "nameEn": "Recruitment Information in Vietnam",
+    "nameJp": "ベトナムの求人情報"
   }
 ]
